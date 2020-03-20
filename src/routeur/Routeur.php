@@ -49,7 +49,7 @@ class Routeur extends \AltoRouter
             }
 
         }
-        if (!isset($this->pageName))$this->pageName = $match['name'];
+        $this->pageName = ($match["name"]);
         return $this;
     }
 
@@ -58,34 +58,60 @@ class Routeur extends \AltoRouter
         return $this->router->generate($urlName, $params);
     }
 
-    public function getAllPageFrench():self
+    public function getAllPageFrançais():self
     {
         $this->pageData = array();
-        $this->get('/', 'index','Acceuil')
+        $this->get('/', 'index','Acceuil base')
 
-            ->get("/fr/","fr/index", "Acceuil")
-            ->get("/fr/connexion","fr/utilisateur/login", "Connexion Fr")
+            ->get("/fr/","fr/index", "Acceuil fr")
+            ->get("/fr/connexion","fr/utilisateur/login", "Connexion fr")
+            /*Erreur HTTP*/
+            ->get("/fr/404","fr/erreur/404", "404 fr")
 
-            ->get("/en/","en/index", "Acceuil")
-            ->get("/en/login","en/utilisateur/login", "Connexion English")
-            ->get("/en/","en/index", "Acceuil")
-            ->get("/en/langageNotSuported","en/erreur/langageNotSuported", "Connexion English")
-
-            ->get("/ar/","ar/index", "Acceuil")
-            ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion Arabe")
-
-            ->get("/pl/","pl/index", "Acceuil")
-            ->get("/pl/logowania","pl/utilisateur/login", "Connexion Polonais")
-
+            ->get("/fr/test","fr/index", "test fr")
         ;
 
         return $this;
     }
 
-    public function getTitre()
+    public function getAllPageAnglais():self
     {
-        return $this->pageName;
+        $this->pageData = array();
+        $this->get("/en/","en/index", "Acceuil en")
+             ->get("/en/login","en/utilisateur/login", "Connexion en")
+             ->get("/en/langageNotSuported","en/erreur/langageNotSuported", "langageNonSupporter en")
+            /*Erreur HTTP*/
+            ->get("/en/404","en/erreur/404", "404 en")
+        ;
+
+        return $this;
     }
+
+    public function getAllPagePolonais():self
+    {
+        $this->pageData = array();
+        $this->get("/pl/","pl/index", "Acceuil pl")
+             ->get("/pl/logowania","pl/utilisateur/login", "Connexion pl")
+            /*Erreur HTTP*/
+            ->get("/pl/404","pl/erreur/404", "404 pl")
+        ;
+
+        return $this;
+    }
+
+    public function getAllPageArabe():self
+    {
+        $this->pageData = array();
+        $this->get("/ar/","ar/index", "Acceuil ar")
+            ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
+            /*Erreur HTTP*/
+            ->get("/pl/404","pl/erreur/404", "404 ar")
+        ;
+
+        return $this;
+    }
+
+
 
     public function getPublicPath()
     {
@@ -123,5 +149,16 @@ class Routeur extends \AltoRouter
             header("Location: /en/langageNotSuported");
             exit();
         }
+    }
+
+    public function getPageOtherLanguage()
+    {
+        $result = array();
+        $i = 0;
+        foreach ($this->router->routes as $r)
+        {
+           if (explode(" ",$r[3])[0] === explode(" ", $this->pageName)[0]) $result[explode(" ",$r[3])[1]] = $this->getUrl($r[3]);
+        }
+        return $result;
     }
 }

@@ -6,9 +6,12 @@ require ("../src/routeur/Routeur.php");
 ob_start();
 $routeur = new \Psiko\Routeur(dirname(__DIR__) . '/views', dirname(__DIR__) ."/public");
 session_start();
-$routeur->getAllPageFrench()
-    ->run();
-
+$routeur->getAllPageFrançais()
+        ->getAllPageAnglais()
+        ->getAllPageArabe()
+        ->getAllPagePolonais()
+        ->run();
+$autrePages = $routeur->getPageOtherLanguage();
 
 $contenue = ob_get_clean();
 
