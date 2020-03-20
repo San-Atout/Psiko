@@ -1,5 +1,5 @@
 <?php
-namespace Psiko;
+namespace Psiko\routeur;
 use \AltoRouter;
 
 class Routeur extends \AltoRouter

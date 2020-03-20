@@ -9,6 +9,8 @@ $lienAr = isset($autrePages["ar"])? $autrePages["ar"] : $routeur->getUrl("404 ar
 $lienFr = isset($autrePages["fr"])? $autrePages["fr"] : $routeur->getUrl("404 fr");
 $lienEn = isset($autrePages["en"])? $autrePages["en"] : $routeur->getUrl("404 en");
 $lienPl = isset($autrePages["pl"])? $autrePages["pl"] : $routeur->getUrl("404 pl");
+$database =  new \Psiko\database\MysqlDatabase("psiko");
+$database->getPDO();
 ?>
 
 <ul>
