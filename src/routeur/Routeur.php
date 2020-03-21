@@ -10,6 +10,7 @@ class Routeur extends \AltoRouter
     private $pageName;
     private $app;
     public  $pageData;
+    private $langue;
 
     public function __construct(string $viewpath, string  $publicpath)
     {
@@ -154,11 +155,15 @@ class Routeur extends \AltoRouter
     public function getPageOtherLanguage()
     {
         $result = array();
-        $i = 0;
         foreach ($this->router->routes as $r)
         {
            if (explode(" ",$r[3])[0] === explode(" ", $this->pageName)[0]) $result[explode(" ",$r[3])[1]] = $this->getUrl($r[3]);
         }
         return $result;
+    }
+
+    public function getLangue()
+    {
+        return explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
     }
 }

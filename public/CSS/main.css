@@ -1,0 +1,532 @@
+*
+{
+    margin-top:0px;
+    padding: 0px;
+    font-family: Avenir, sans-serif;
+}
+
+/*Taille minimale de la fenêtre = 1380px*/
+
+header
+{
+    display:flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0; right: 0; top: 0;
+    height: 80px;
+    z-index:900;
+    border-bottom:solid;
+    border-width:5px;
+    border-color:#4472c4;
+    padding-top:20px;
+    background-color:white;
+}
+
+
+
+#langues{
+    min-width: 180px;
+    padding-top: 10px
+}
+
+.image_site{
+    margin-top: -4px;
+    width:340px;
+    min-width:340px;
+}
+
+
+/*Barre de navigation*/
+nav
+{
+    width: 100%;
+    margin: 0 auto;
+    background-color:white;;
+    position: sticky;
+    top: 0px;
+}
+
+nav header
+{
+    display:flex;
+
+    /*color: #4472c4;
+    border-bottom: 2px solid #4472c4;
+    background-color:RGBa(200,200,200,0.5);*/
+}
+
+/*nav header li
+	{
+	font-size:20px;
+	font-weight:normal;
+	margin-top:4px;
+	}*/
+
+#element_nav_generale
+{
+    font-size:27px;
+    font-weight:normal;
+    margin-top:5px;
+    margin-right:5px;
+    font-weight:bold;
+    padding-right:5px;
+    min-width: 1000px
+}
+
+#menu_utilisateur
+{
+    display:flex;
+    flex-direction: column;
+    text-decoration:none;
+    font-size:18px;
+    position: fixed;
+    left:5px; top:100px;
+    width:15%;
+    /*background-color:blue;*/
+    /*border-bottom: 2px solid #4472c4;*/
+    background-color:white;
+    text-align:justify;
+    box-shadow:6px 6px 5px RGBa(120,120,120,0.5);
+    font-size: 20px;
+}
+
+
+
+nav ul
+{
+    list-style-type: none;
+}
+
+nav ul li
+{
+    float: left;
+    width: 20%;
+    text-align: center;
+    position: relative;
+}
+
+#menu_utilisateur ul li{
+    float: left;
+    width: 100%;
+    height:100%;
+    font-size: 20px;
+    position: relative;
+    text-align:center;
+}
+
+nav ul::after
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#menu_utilisateur ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav a
+{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding: 6px 0px;
+    margin:2px 0px;
+}
+
+#menu_utilisateur li{
+    width:100%;
+}
+
+#menu_utilisateur a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+}
+
+nav a:hover
+{
+    color: #4472c4;
+    border-bottom: 4px solid #4472c4;
+    background-color:RGBa(200,200,200,0.5);
+}
+
+#menu_utilisateur a:hover{
+    color: #4472c4;
+    border-left: 4px solid #4472c4;
+    background-color:RGBa(200,200,200,0.5);
+}
+
+.sous
+{								/*Création du menu déroulant avec une ombre. Le menu déroulant est caché*/
+    display: none;
+    box-shadow: 0px 1px 2px #CCC;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+#menu_utilisateur .sous{
+    margin-left:100%;
+    margin-top:-43px;
+    box-shadow:6px 6px 5px RGBa(120,120,120,0.5);
+    border-left: 4px solid #4472c4;
+}
+
+
+nav > ul li:hover .sous
+{								/*On affiche le menu déroulant, qui auparavant est caché, au survol de la souris*/
+    display: block;
+}
+
+/*#menu_utilisateur > ul li:hover .sous{
+	display:block;
+}*/
+
+.sous li
+{								/*Css du sous menu*/
+    float: none;
+    width: 100%;
+    text-align: left;
+}
+
+.sous a
+{
+    padding: 10px;
+    border-bottom: none;
+}
+
+.sous a:hover
+{
+    color:orange;
+    border-bottom: none;
+    background-color: RGBa(200,200,200,0.5);
+}
+
+
+#menu_utilisateur .sous a:hover{
+    color:orange;
+    border-left:4px solid orange;
+}
+
+.menu_deroulant > a::after
+{										/*Affichage d'un élément après le lien*/
+    content:"▼";
+    font-size: 12px;
+}
+
+
+
+#menu_utilisateur{
+    margin-top:50px;
+    font-weight:bold;
+}
+
+/*Drapeaux langues*/
+.drapeau
+{
+    border-style:solid;
+    border-color:white;
+    padding: 0;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.drapeau:hover
+{
+    border-style:solid;
+    border-color:gold;
+}
+
+.drapeau-link{
+    padding: 0;
+    text-decoration: none;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+#contenu
+{
+    margin-top: 160px;
+    padding-left: 18%;
+    /*padding-left:20px;*/
+    padding-right:20px;
+    text-align:justify;
+    min-height: 550px;
+}
+
+section{
+}
+
+footer{
+    flex-direction: column;
+    left: 0; right: 0; bottom: 0;
+    height: 100px;
+    z-index:900;
+    border-top:solid;
+    border-width:2px;
+    border-color:black;
+    padding-top:15px;
+}
+
+#introduction{
+    width:80%;
+    background-color:rgb(208,232,255);
+    /*border:3px solid rgb(208,232,255);*/
+    border-radius:50px;
+}
+#introduction p{
+    padding-left:50px;
+    padding-right:50px;
+    padding-top: 20px;
+    padding-bottom:20px;
+    text-align: justify;
+}
+
+#plus{
+    width: 80%;
+    text-align:right;
+    padding-top: 3px;
+}
+
+#plus a{
+    font-style: none;
+    font-weight:none;
+    text-decoration: none;
+    color: RGBa(160,160,160,0.7);
+}
+
+#presentation{
+    display:flex;
+    justify-content: center;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+html
+{
+    height: 100%;
+}
+#page{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background: rgb(192, 189, 232);
+    background: linear-gradient(0deg, rgba(192, 189, 232, 1) 0%, rgba(188, 221, 252, 1) 100%);
+    padding: 0;
+}
+
+#footer{
+    display: flex;
+    justify-content: center;
+}
+#footer li{
+    margin:5px;
+}
+
+#footer a{
+    font-style: none;
+    font-weight:none;
+    text-decoration: underline;
+    color: RGBa(160,160,160,1);
+}
+
+#createurs{
+    flex-direction: column;
+    padding-left:3%;
+}
+
+#affichage_createur{
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+#createurs li{
+    font-size: 0.6em;
+}
+
+.logo{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    justify-content: center;
+}
+
+label{
+    margin-left: 0px;
+    font-size: 14px;
+}
+
+
+
+fieldset{
+    max-width: 500px; /*réduction du cadre du formulaire à droite*/
+    margin: auto;
+    background-color: rgb(208,232,255);
+    padding:20px;
+    margin-bottom: 50px;
+}
+
+fieldset p{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 120px;
+    height: 20px;
+    margin-left: 20px;
+}
+.age{
+    width:70px;
+}
+select{
+    margin-left:20px;
+    width:120px;
+}
+.email{
+    width: 200px;
+}
+.bouton{
+    width: 150px;
+    margin:auto;
+}
+.indication{
+    font-style: italic;
+    padding:20px;
+}
+.image{
+    margin:auto;
+}
+.noms{
+    display: flex;
+}
+.motpasse{
+    display: flex;
+}
+
+#fiche_inscription{
+    justify-content: center;
+
+}
+#motpasseoublie{
+    margin-top: -35px;
+    margin-left:170px;
+
+}
+#motpasseoublie a{
+    color:RGBa(160,160,160,1);
+    font-style: none;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.bouton{
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+.bouton_1{
+    height: 60px;
+    width: 200px;
+    margin-bottom: 20px;
+    margin-left:-150px;
+    font-size: 25px;
+    border-radius: 10px;
+    box-shadow: 8px 8px 10px grey;
+}
+
+.bouton_2{
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    font-size: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px grey;
+    margin: auto;
+}
+
+form{
+    display:flex;
+    justify-content: center;
+    margin-left: -200px;
+}
+textarea{
+    width: 500px;
+    height: 150px;
+    min-height: 150px;
+    min-width:500px;
+}
+
+.contacter{
+    font-size: 20px;
+}
+
+figure{
+    display:flex;
+    justify-content: center;
+    margin-left: -160px;
+}
+
+#FAQ{
+    width: 80%;
+}
+
+#Questions{
+    text-decoration: none;
+    font-style: italic;
+    font-size: 1.1em;
+    color: black;
+}
+
+h1{
+    font-size:1.4em;
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 2px;
+}
+h2{
+    font-size: 1.2em;
+    font-weight:bold;
+    font-style:italic;
+}
+
+
+.reponse{
+    display:none;
+}
+
+#Questions > .question:hover .reponse{
+    display:block;
+}
+
+#Questions a{
+    text-decoration: underline;
+    font-style: italic;
+    color:black;
+}
+
+strong{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+#titre_CGU{
+    text-align:center;
+}
+
+

@@ -26,7 +26,6 @@ class MysqlDatabase
         $this->nomDatabase = $nomDatabase;
         $this->utilisateurDatabase = Helper::decryptString($init["user"]);
         $this->mdpDatabase = Helper::decryptString($init["mdp"]."==");
-        var_dump($this->mdpDatabase);
         $this->hostDatabase = "junichirokagami";
     }
 

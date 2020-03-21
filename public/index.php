@@ -16,8 +16,5 @@ $routeur->getAllPageFrançais()
 $autrePages = $routeur->getPageOtherLanguage();
 
 $contenue = ob_get_clean();
-
-var_dump($contenue);
-
-require dirname(__DIR__) . '/views/templates/default.php';
+require dirname(__DIR__) .DIRECTORY_SEPARATOR. 'views/templates/default.php';
 
