@@ -10,7 +10,7 @@ class Routeur extends \AltoRouter
     private $pageName;
     private $app;
     public  $pageData;
-    private $langue;
+    public $langue;
 
     public function __construct(string $viewpath, string  $publicpath)
     {
@@ -36,6 +36,7 @@ class Routeur extends \AltoRouter
     public function run():self
     {
         $this->pageName = null;
+        $this->langue = explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
         $match = $this->router->match();
         $view = $match['target'];
         $params = $match['params'];
@@ -63,6 +64,7 @@ class Routeur extends \AltoRouter
     {
         $this->pageData = array();
         $this->get('/', 'index','Acceuil base')
+            ->get("/fr","fr/index", "Acceuil fr")
 
             ->get("/fr/","fr/index", "Acceuil fr")
             ->get("/fr/connexion","fr/utilisateur/login", "Connexion fr")
@@ -78,7 +80,9 @@ class Routeur extends \AltoRouter
     public function getAllPageAnglais():self
     {
         $this->pageData = array();
-        $this->get("/en/","en/index", "Acceuil en")
+        $this
+             ->get("/en","en/index", "Acceuil en")
+             ->get("/en/","en/index", "Acceuil en")
              ->get("/en/login","en/utilisateur/login", "Connexion en")
              ->get("/en/langageNotSuported","en/erreur/langageNotSuported", "langageNonSupporter en")
             /*Erreur HTTP*/
@@ -91,10 +95,12 @@ class Routeur extends \AltoRouter
     public function getAllPagePolonais():self
     {
         $this->pageData = array();
-        $this->get("/pl/","pl/index", "Acceuil pl")
+        $this
+             ->get("/pl","pl/index", "Acceuil pl")
+             ->get("/pl/","pl/index", "Acceuil pl")
              ->get("/pl/logowania","pl/utilisateur/login", "Connexion pl")
             /*Erreur HTTP*/
-            ->get("/pl/404","pl/erreur/404", "404 pl")
+             ->get("/pl/404","pl/erreur/404", "404 pl")
         ;
 
         return $this;
@@ -103,10 +109,12 @@ class Routeur extends \AltoRouter
     public function getAllPageArabe():self
     {
         $this->pageData = array();
-        $this->get("/ar/","ar/index", "Acceuil ar")
-            ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
+        $this
+             ->get("/ar","ar/index", "Acceuil ar")
+             ->get("/ar/","ar/index", "Acceuil ar")
+             ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
             /*Erreur HTTP*/
-            ->get("/pl/404","pl/erreur/404", "404 ar")
+             ->get("/pl/404","pl/erreur/404", "404 ar")
         ;
 
         return $this;
@@ -134,10 +142,11 @@ class Routeur extends \AltoRouter
             {
                 if ($langue !== $urlData[0])
                 {
-                    $matchTest = $this->router->match("/".$langue.$urlTest);
+                    $matchTest = $this->router->match("/".$urlTest);
                     if ($matchTest != null)
                     {
-                        header("Location: /".$langue.$urlTest);
+                        $this->langue = $langue;
+                        header("Location: /".$langue.$urlTest,true, 303);
                         exit();
                     }
                 }
@@ -147,6 +156,7 @@ class Routeur extends \AltoRouter
         }
         else
         {
+            $this->langue = "en";
             header("Location: /en/langageNotSuported");
             exit();
         }
@@ -164,6 +174,6 @@ class Routeur extends \AltoRouter
 
     public function getLangue()
     {
-        return explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
+        return $this->langue;
     }
 }

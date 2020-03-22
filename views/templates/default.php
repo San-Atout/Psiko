@@ -15,6 +15,7 @@ $database->getPDO();
 <!DOCTYPE html>
 <html>
 <head>
+    <meta lang="<?=$routeur->getLangue()?>">
     <meta charset= "utf-8" />
     <link rel="stylesheet" href="/CSS/main.css"/>											<!--choisir le fichier CSS qui va bien-->
 
@@ -22,28 +23,14 @@ $database->getPDO();
     <title>Infinite Measures</title>   																<!-- Mettre le titre de la page-->
 </head>
 <body id="page">
-    <?php require 'header'.DIRECTORY_SEPARATOR.$routeur->getLangue().'.php'?>
+    <?php require 'header'.DIRECTORY_SEPARATOR.$routeur->langue.'.php'; ?>
 
 
     <div id="contenu">
-        <div>
-            <nav>
-                <ul id="menu_utilisateur">
-                    <li class="menu_deroulant"><a href="projet.html">Notre produit &ensp;</a>
-                        <ul class="sous">
-                            <li><a href="#">Déroulé des tests</a></li>
-                            <li><a href="#">Fréquence cardiaque</a></li>
-                            <li><a href="#">Température de la peau</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Mon profil <!--(si non connecté, renvoyer sur la page de connexion)--></a></li>
-                    <li><a href="#">un autre outil de nav</a></li>
-                </ul>
-            </nav>
-        </div>
+        <?php require 'nav'.DIRECTORY_SEPARATOR.$routeur->langue.'.php';?>
 
        <?=$contenue?>
     </div>
-    <?php require 'footer'.DIRECTORY_SEPARATOR.$routeur->getLangue().'.php'?>
+    <?php require 'footer'.DIRECTORY_SEPARATOR.$routeur->langue.'.php'?>
     </body>
 </html>
