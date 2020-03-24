@@ -1,5 +1,6 @@
 <?php
 
+use  Psiko\helper\Notification;
 
 class userEntity
 {
@@ -18,9 +19,91 @@ class userEntity
     private bool $valider;
     private String $photoPicture;
 
-    public function __construct($result)
+    public function __construct()
     {
-        var_dump($result);
+    }
+
+    public function setUpUser($prenom, $nom, $email, $adresse, $telephone, $sexe, $password, $dateInscription,$birthday,$ecoleId,$rang,$valider,$photoPicture)
+    {
+        $this->setNom($prenom);
+        $this->setPrenom($nom);
+        $this->setEmail($email);
+        $this->setAdresse($adresse);
+        $this->setTelephone($telephone);
+        $this->setSexe($sexe);
+        $this->setPassword($password);
+        $this->setDateInscription($dateInscription);
+        $this->setBirthday($birthday);
+        $this->setEcoleId($ecoleId);
+        $this->setRang($rang);
+        $this->setValider($valider);
+        $this->setPhotoPicture($photoPicture);
+
+    }
+
+    public function authentification($email, $password, $langue)
+    {
+        $result = array();
+        $userDatabase = new \Psiko\database\userTable();
+
+        $user = $userDatabase->getUserByMail($email);
+        if (!empty($user))
+        {
+            if (password_verify($password,$user[0]->password))
+            {
+                $this->setUpUser($user[0]->prenom,$user[0]->nom,$user[0]->email,$user[0]->adresse,$user[0]->telephone,
+                    $user[0]->sexe,$user[0]->password,
+                    DateTime::createFromFormat("Y-m-d",$user[0]->dateInscription),
+                    DateTime::createFromFormat("Y-m-d",$user[0]->birthday),$user[0]->ecoleId,
+                    $user[0]->rang,$user[0]->valider,$user[0]->photoPicture);
+            }
+           else
+           {
+               $result["error"]["connexion"] = Notification::errorNotifWrongPassword($langue);
+           }
+        }
+        else
+        {
+            $result["error"]["connexion"] = Notification::errorNotifUserNotFoubnd($langue);
+        }
+        return $result;
+    }
+
+
+    public function inscription($POST, $langue)
+    {
+        $userDatabase = new \Psiko\database\userTable();
+
+        $result = array();
+        $isNotInDatabase = $userDatabase->isUserInDatabase($POST["prenom"], $_POST["nom"], $POST["email"]);
+        $isMoreThan16 =  DateTime::createFromFormat("Y-m-d", $POST["birthday"])->diff(new DateTime())->y >= 16 ;
+        $isSamePassword = $POST["password"] === $POST["passwordRpt"];
+        var_dump($isNotInDatabase );
+        if ($isSamePassword && $isNotInDatabase && $isMoreThan16)
+        {
+            //TODO faire le système des écoles
+            $password = password_hash($POST["password"],PASSWORD_BCRYPT); ;
+            $this->setUpUser($POST["prenom"],$POST["nom"],$POST["email"],$POST["adresse"],
+                             $POST["numeroTelephone"],$POST["sexe"],$password,new DateTime(),
+                             DateTime::createFromFormat("Y-m-d", $POST["birthday"]),1,
+                            "utilisateur",false,"default");
+            $userDatabase->insertNewUser($this);
+        }
+        else
+        {
+            if (!$isSamePassword) $result["error"]["SamePassword"] = Notification::errorNotifPasswordMissMatch($langue);
+            if (!$isNotInDatabase) $result["error"]["allreadyDatabase"] = Notification::errorNotifAllReadyIn($langue);
+            if (!$isMoreThan16) $result["error"]["toYoung"] = Notification::errorNotifTooYoung($langue);
+        }
+        return $result;
+    }
+
+
+    public function deconnexion()
+    {
+        setcookie('remember',NULL,-1);
+        unset($_SESSION['auth']);
+        return "Vous avez bien été déconnecté";
     }
 
     /**

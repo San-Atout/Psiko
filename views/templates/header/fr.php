@@ -6,16 +6,41 @@
 
     <nav>														<!--Menu de navigation-->
         <ul id="element_nav_generale">
-            <li><a href="Y-CO.html#page">Accueil</a></li>
-            <li><a href="nous.html">Qui sommes nous ?</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Nous contacter</a></li>
-            <li class="menu_deroulant"><a href="inscription_connexion.html">S'inscrire/ Se connecter &ensp;</a> <!-- &ensp permet de créer un espace double-->
+            <li><a href="<?=$routeur->getUrl("Acceuil fr") ?>">Accueil</a></li>
+            <li class="menu_deroulant"><a href="<?=$routeur->getUrl("Nous fr") ?>">Information</a>
                 <ul class="sous">
-                    <li><a href="inscription.html">Inscription</a></li>
-                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Qui sommes nous</a></li>
+                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Le projet</a></li>
+                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Déroulé des tests</a></li>
+                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Fréquence cardiaques</a></li>
+                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Température de la peau</a></li>
+
                 </ul>
             </li>
+            <li><a href="<?=$routeur->getUrl("FAQ fr") ?>">FAQ</a></li>
+            <li><a href="<?=$routeur->getUrl("NousContacter fr") ?>">Nous contacter</a></li>
+            <?php if(isset($_SESSION["auth"]))
+                {
+                        echo '
+                    <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> <!-- &ensp permet de créer un espace double-->
+                        <ul class="sous">
+                            <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
+                            <li><a href="'.$routeur->getUrl("Resultats fr") .'">Mes résultats</a></li>
+                            <li><a href="'.$routeur->getUrl("EnvoyerTicket fr") .'">Ecrire un ticket</a></li>
+                            <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>
+                        </ul>
+                    </li>';
+                }
+                else
+                {
+                    echo '<li class="menu_deroulant"><a href="#">S\'inscrire/ Se connecter &ensp;</a> <!-- &ensp permet de créer un espace double-->
+                    <ul class="sous">
+                        <li><a href="'.$routeur->getUrl("Inscription fr"). '">Inscription</a></li>
+                        <li><a href="'.$routeur->getUrl("Connexion fr") .'">Connexion</a></li>
+                    </ul>
+                </li>' ;
+                }
+            ?>
         </ul>
     </nav>
 
@@ -33,5 +58,4 @@
             <img class="drapeau" src="/Images/logo pologne.png" alt="polonais" title="Kliknij tutaj, aby przejść do strony w języku polskim"/>
         </a>
     </div>
-
 </header>

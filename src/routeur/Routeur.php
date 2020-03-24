@@ -37,7 +37,8 @@ class Routeur extends \AltoRouter
     {
         $this->pageName = null;
         $this->langue = explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
-        $match = $this->router->match();
+        $requestUrl = substr( $_SERVER['REQUEST_URI'], -1) == "/" ? $_SERVER['REQUEST_URI'] : $_SERVER['REQUEST_URI'].'/' ;
+        $match = $this->router->match($requestUrl);
         $view = $match['target'];
         $params = $match['params'];
         if ($view !== null)
@@ -64,14 +65,22 @@ class Routeur extends \AltoRouter
     {
         $this->pageData = array();
         $this->get('/', 'index','Acceuil base')
-            ->get("/fr","fr/index", "Acceuil fr")
-
             ->get("/fr/","fr/index", "Acceuil fr")
-            ->get("/fr/connexion","fr/utilisateur/login", "Connexion fr")
-            /*Erreur HTTP*/
-            ->get("/fr/404","fr/erreur/404", "404 fr")
 
-            ->get("/fr/test","fr/index", "test fr")
+            ->get("/fr/tickets/","fr/utilisateur/envoyertickets","EnvoyerTicket fr")
+            /*Partie de l'utilisateur*/
+            ->get("/fr/connexion/","fr/utilisateur/connexion", "Connexion fr")
+            ->get("/fr/inscription/","fr/utilisateur/inscription", "Inscription fr")
+            ->get("/fr/utilisateur/profil/","fr/utilisateur/profil", "Profil fr")
+            ->get("/fr/utilisateur/resultats/","fr/utilisateur/resultat", "Resultats fr")
+            ->get("/fr/deconnexion/","fr/utilisateur/deconnexion", "Deconnexion fr")
+            /*Erreur HTTP*/
+            ->get("/fr/404/","fr/erreur/404", "404 fr")
+            /*Partie Generale*/
+            ->get("/fr/nous/","fr/general/nous","Nous fr")
+            ->get("/fr/mentionlegal/","fr/general/mentionLegal", "mentionLegal fr")
+            ->get("/fr/faq/","/fr/general/FAQ","FAQ fr")
+            ->get("/fr/nous-contacter/","/fr/general/contact","NousContacter fr")
         ;
 
         return $this;

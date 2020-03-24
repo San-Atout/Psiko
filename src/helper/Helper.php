@@ -18,4 +18,6 @@ class Helper
     public static function decryptString($string) {
         return openssl_decrypt($string, self::$ciphering,self::$passphrase, self::$options, self::$encryption_iv);
     }
+
+
 }

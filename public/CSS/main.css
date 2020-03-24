@@ -1,96 +1,79 @@
 *
+
 {
     margin-top:0px;
     padding: 0px;
     font-family: Avenir, sans-serif;
 }
 
-/*Taille minimale de la fenêtre = 1380px*/
-
 header
+    /* creation header */
 {
     display:flex;
     justify-content: space-between;
     position: fixed;
     left: 0; right: 0; top: 0;
-    height: 80px;
     z-index:900;
     border-bottom:solid;
-    border-width:5px;
+    border-width:3%;
     border-color:#4472c4;
-    padding-top:20px;
+    padding-top:1%;
     background-color:white;
+
 }
 
-
-
 #langues{
-    min-width: 180px;
-    padding-top: 10px
+    /* affichage langues */
+    min-width: 14%;
+    padding-top: 1.2%
 }
 
 .image_site{
-    margin-top: -4px;
-    width:340px;
-    min-width:340px;
+    margin-top: 0.95%;
+    width:5%;
+    min-width:16%;
 }
-
 
 /*Barre de navigation*/
 nav
 {
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    margin-left: 10%;
     background-color:white;;
-    position: sticky;
-    top: 0px;
+    position: relative;
+    top: 0;
 }
-
 nav header
 {
     display:flex;
-
-    /*color: #4472c4;
-    border-bottom: 2px solid #4472c4;
-    background-color:RGBa(200,200,200,0.5);*/
 }
-
-/*nav header li
-	{
-	font-size:20px;
-	font-weight:normal;
-	margin-top:4px;
-	}*/
 
 #element_nav_generale
 {
-    font-size:27px;
-    font-weight:normal;
-    margin-top:5px;
-    margin-right:5px;
+    /* taille carac */
+    font-size:20px;
+    margin-top:10px;
+    margin-right:10px;
     font-weight:bold;
     padding-right:5px;
-    min-width: 1000px
+    min-width: 700px
 }
-
 #menu_utilisateur
 {
     display:flex;
     flex-direction: column;
     text-decoration:none;
-    font-size:18px;
     position: fixed;
     left:5px; top:100px;
-    width:15%;
-    /*background-color:blue;*/
-    /*border-bottom: 2px solid #4472c4;*/
+    width:1%;
+
     background-color:white;
     text-align:justify;
     box-shadow:6px 6px 5px RGBa(120,120,120,0.5);
     font-size: 20px;
+    visibility:hidden;
 }
-
-
 
 nav ul
 {
@@ -103,6 +86,7 @@ nav ul li
     width: 20%;
     text-align: center;
     position: relative;
+
 }
 
 #menu_utilisateur ul li{
@@ -149,16 +133,16 @@ nav a
     padding: 10px 0px;
 }
 
+#menu_utilisateur a:hover{
+    color: #4472c4;
+    border-left: 4px solid #4472c4;
+    background-color:RGBa(200,200,200,0.5);
+}
+
 nav a:hover
 {
     color: #4472c4;
     border-bottom: 4px solid #4472c4;
-    background-color:RGBa(200,200,200,0.5);
-}
-
-#menu_utilisateur a:hover{
-    color: #4472c4;
-    border-left: 4px solid #4472c4;
     background-color:RGBa(200,200,200,0.5);
 }
 
@@ -184,10 +168,6 @@ nav > ul li:hover .sous
 {								/*On affiche le menu déroulant, qui auparavant est caché, au survol de la souris*/
     display: block;
 }
-
-/*#menu_utilisateur > ul li:hover .sous{
-	display:block;
-}*/
 
 .sous li
 {								/*Css du sous menu*/
@@ -228,13 +208,12 @@ nav > ul li:hover .sous
     font-weight:bold;
 }
 
-/*Drapeaux langues*/
 .drapeau
 {
     border-style:solid;
     border-color:white;
     padding: 0;
-    max-width: 40px;
+    max-width: 50px;
     max-height: 40px;
 }
 
@@ -247,15 +226,14 @@ nav > ul li:hover .sous
 .drapeau-link{
     padding: 0;
     text-decoration: none;
-    max-width: 40px;
+    max-width: 50px;
     max-height: 40px;
 }
 
 #contenu
 {
-    margin-top: 160px;
+    margin-top: 10%;
     padding-left: 18%;
-    /*padding-left:20px;*/
     padding-right:20px;
     text-align:justify;
     min-height: 550px;
@@ -296,8 +274,6 @@ footer{
 }
 
 #plus a{
-    font-style: none;
-    font-weight:none;
     text-decoration: none;
     color: RGBa(160,160,160,0.7);
 }
@@ -316,13 +292,10 @@ html
 {
     height: 100%;
 }
+
+
 #page{
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background: rgb(192, 189, 232);
-    background: linear-gradient(0deg, rgba(192, 189, 232, 1) 0%, rgba(188, 221, 252, 1) 100%);
+    background: #BFBCE6;
     padding: 0;
 }
 
@@ -330,15 +303,15 @@ html
     display: flex;
     justify-content: center;
 }
+
 #footer li{
     margin:5px;
 }
 
 #footer a{
-    font-style: none;
-    font-weight:none;
+
     text-decoration: underline;
-    color: RGBa(160,160,160,1);
+    color: RGBa(0,0, 0,1);
 }
 
 #createurs{
@@ -364,11 +337,14 @@ html
 }
 
 label{
-    margin-left: 0px;
-    font-size: 14px;
+    margin-left: 20px;
+    margin-top:5%;
+    margin-bottom:5%;
+    font-size: 16px;
+    color: rgb(0,0,0);
+    font-family: Avenir, sans-serif;
+
 }
-
-
 
 fieldset{
     max-width: 500px; /*réduction du cadre du formulaire à droite*/
@@ -384,20 +360,27 @@ fieldset p{
 }
 
 input{
-    width: 120px;
-    height: 20px;
+    width: 30%;
+    height: 35px;
     margin-left: 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 18px;
 }
+
 .age{
     width:70px;
+
 }
 select{
     margin-left:20px;
     width:120px;
 }
+
 .email{
     width: 200px;
 }
+
 .bouton{
     width: 150px;
     margin:auto;
@@ -406,6 +389,7 @@ select{
     font-style: italic;
     padding:20px;
 }
+
 .image{
     margin:auto;
 }
@@ -416,18 +400,9 @@ select{
     display: flex;
 }
 
-#fiche_inscription{
-    justify-content: center;
 
-}
-#motpasseoublie{
-    margin-top: -35px;
-    margin-left:170px;
-
-}
 #motpasseoublie a{
     color:RGBa(160,160,160,1);
-    font-style: none;
     text-decoration: none;
     font-size: 10px;
 }
@@ -459,74 +434,23 @@ select{
     margin: auto;
 }
 
-form{
-    display:flex;
-    justify-content: center;
-    margin-left: -200px;
-}
-textarea{
-    width: 500px;
-    height: 150px;
-    min-height: 150px;
-    min-width:500px;
+.form-group
+{
+    margin: 10px auto; /**écart entre trucs formulaire**/
+    color: #19BED4;
 }
 
-.contacter{
-    font-size: 20px;
-}
-
-figure{
-    display:flex;
-    justify-content: center;
-    margin-left: -160px;
-}
-
-#FAQ{
-    width: 80%;
-}
-
-#Questions{
-    text-decoration: none;
-    font-style: italic;
-    font-size: 1.1em;
-    color: black;
-}
-
-h1{
-    font-size:1.4em;
-    font-weight: bold;
-    font-style: normal;
-    margin-bottom: 2px;
-}
-h2{
-    font-size: 1.2em;
-    font-weight:bold;
-    font-style:italic;
-}
-
-
-.reponse{
-    display:none;
-}
-
-#Questions > .question:hover .reponse{
-    display:block;
-}
-
-#Questions a{
-    text-decoration: underline;
-    font-style: italic;
-    color:black;
-}
-
-strong{
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-
-#titre_CGU{
-    text-align:center;
-}
-
-
+.btn-submit
+{
+    margin-left: auto;
+    color: #2E1760;
+    margin-right: auto;
+    margin-top: 40px;
+    border-radius: 30px;
+    font-size: 25px;
+    width: 335px;
+    height: 80px;
+    margin-bottom: 5%;
+    text-transform: uppercase;
+    background-color: rgb(208,232,255);
+}}

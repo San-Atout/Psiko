@@ -27,8 +27,6 @@ $database->getPDO();
 
 
     <div id="contenu">
-        <?php require 'nav'.DIRECTORY_SEPARATOR.$routeur->langue.'.php';?>
-
        <?=$contenue?>
     </div>
     <?php require 'footer'.DIRECTORY_SEPARATOR.$routeur->langue.'.php'?>
