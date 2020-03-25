@@ -19,5 +19,15 @@ class Helper
         return openssl_decrypt($string, self::$ciphering,self::$passphrase, self::$options, self::$encryption_iv);
     }
 
+    public static function chaineAleatoire($length) {
+        $string = "";
+        $chaine = "abcdefghijklmnpqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        srand((double)microtime()*1000000);
+        for($i=0; $i<$length; $i++) {
+            $string .= $chaine[rand()%strlen($chaine)];
+        }
+        return $string;
+    }
+
 
 }

@@ -55,4 +55,34 @@ class Notification
         else                       $result = "";
         return $result ;
     }
+
+    public static function errorExtensionNotSupported($langue)
+    {
+        //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
+        if ($langue === "fr") $result = "le mail et le mots de passe ne corresponde pas";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function errorFileTropLourd($langue, $depassement)
+    {
+        //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
+        if ($langue === "fr") $result = "Nous sommes désolé mais votre fichier dépasse la limite de ".$depassement. " Ko";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function errorUploadFiles($langue)
+    {
+        //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
+        if ($langue === "fr") $result = "Une erruer est arrivé durant l'upload du fichier";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
 }

@@ -5,9 +5,13 @@ require ("../src/routeur/Routeur.php");
 require ("../src/database/MysqlDatabase.php");
 require ("../src/helper/Helper.php");
 require ("../src/helper/Form.php");
-require ("../src/Entity/userEntity.php");
-require ("../src/database/userTable.php");
+require("../src/Entity/UserEntity.php");
+require("../src/database/UserTable.php");
 require ("../src/helper/Notification.php");
+require ("../src/TicketSystem.php");
+require ("../src/Entity/TicketsEntity.php");
+require ("../src/database/TicketsTable.php");
+require ("../src/UserSystem.php");
 
 ob_start();
 $routeur = new \Psiko\routeur\Routeur(dirname(__DIR__) . '/views', dirname(__DIR__) ."/public");

@@ -67,13 +67,15 @@ class Routeur extends \AltoRouter
         $this->get('/', 'index','Acceuil base')
             ->get("/fr/","fr/index", "Acceuil fr")
 
-            ->get("/fr/tickets/","fr/utilisateur/envoyertickets","EnvoyerTicket fr")
+            ->get("/fr/tickets/","fr/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket fr")
+            ->get("/fr/tickets/[animeSlug:i]","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
+            ->get("/fr/mes-tickets/","fr/utilisateur/ticketSystem/mestickets","MesTickets fr")
             /*Partie de l'utilisateur*/
-            ->get("/fr/connexion/","fr/utilisateur/connexion", "Connexion fr")
-            ->get("/fr/inscription/","fr/utilisateur/inscription", "Inscription fr")
+            ->get("/fr/connexion/","fr/utilisateur/connexionSystem/connexion", "Connexion fr")
+            ->get("/fr/inscription/","fr/utilisateur/connexionSystem/inscription", "Inscription fr")
             ->get("/fr/utilisateur/profil/","fr/utilisateur/profil", "Profil fr")
             ->get("/fr/utilisateur/resultats/","fr/utilisateur/resultat", "Resultats fr")
-            ->get("/fr/deconnexion/","fr/utilisateur/deconnexion", "Deconnexion fr")
+            ->get("/fr/deconnexion/","fr/utilisateur/connexionSystem/deconnexion", "Deconnexion fr")
             /*Erreur HTTP*/
             ->get("/fr/404/","fr/erreur/404", "404 fr")
             /*Partie Generale*/

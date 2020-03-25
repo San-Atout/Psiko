@@ -4,6 +4,8 @@
 namespace Psiko\database;
 
 
+use Psiko\Entity\userEntity;
+
 class userTable
 {
 
@@ -30,7 +32,7 @@ class userTable
         return empty($this->database->prepare($sql, array(":prenom" => $prenom, ":nom" => $nom, ":email" => $email)));
     }
 
-    public function insertNewUser(\userEntity $user)
+    public function insertNewUser(userEntity $user)
     {
         $sql = "INSERT INTO psiko.user (`prenom`, `nom`, `email`, `adresse`, `telephone`, `sexe`, `password`, `dateInscription`, `birthday`, `ecoleId`, `rang`, `valider`, `photoPicture`) 
                        VALUES (:prenom, :nom, :email, :adresse, :telephone, :sexe, :password, :dateInscription, :birthday, :ecoleId, :rang, :valider, :photoPicture)";

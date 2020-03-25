@@ -1,7 +1,7 @@
 <?php
 if (!empty($_POST))
 {
-    $user = new userEntity();
+    $user = new \Psiko\UserSystem();
     $_SESSION["notification"] = $user->inscription($_POST,"fr");
 }
 $form = new \Psiko\helper\form();
@@ -9,7 +9,7 @@ $form = new \Psiko\helper\form();
 
 
 
-<form class="form_inscription" method="POST" action="">
+<form class="form-inscription" method="POST" action="">
     <?= $form->input("nom","Nom de Famille :","text",true,"DOE")?>
     <?= $form->input("prenom","Prénom :","text",true,"John")?>
     <?= $form->input("email","Email :","email",true,"John.Doe@isep.fr")?>

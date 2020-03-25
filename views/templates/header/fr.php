@@ -27,6 +27,7 @@
                             <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
                             <li><a href="'.$routeur->getUrl("Resultats fr") .'">Mes résultats</a></li>
                             <li><a href="'.$routeur->getUrl("EnvoyerTicket fr") .'">Ecrire un ticket</a></li>
+                            <li><a href="'.$routeur->getUrl("MesTickets fr") .'">Mes tickets</a></li>
                             <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>
                         </ul>
                     </li>';
