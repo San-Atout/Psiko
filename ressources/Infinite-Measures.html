@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:8080/fr/inscription -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta lang="fr">
+
+    <link rel="stylesheet" href="./Infinite Measures_files/main.css">
+    <!--choisir le fichier CSS qui va bien-->
+
+    <link rel="icon" type="png" href="http://localhost:8080/Images/Infinite_measures.png">
+    <!-- Logo de la page sur l'onglet-->
+	<link rel="stylesheet" href="test.css" />
+    <title>Infinite Measures</title>
+    <!-- Mettre le titre de la page-->
+</head>
+
+<body id="page">
+    <header>
+        <!-- contenu de la balise d'en tête-->
+        <div class="image_site">
+            <!-- image de l'en-tête-->
+            <a href="http://localhost:8080/Images/infinite_measures_noir_blanc.png"><img src="C:\Users\Côme\Desktop\Inscrption psi co/miniature_IM_noir_blanc.png" alt="Logo du site" title="Cliquez pour agrandir"></a>
+        </div>
+
+        <nav>
+            <!--Menu de navigation-->
+            <ul id="element_nav_generale">
+                <li><a href="http://localhost:8080/fr/Y-CO.html#page">Accueil</a></li>
+                <li><a href="http://localhost:8080/fr/nous.html">Qui sommes nous ?</a></li>
+                <li><a href="http://localhost:8080/fr/faq.html">FAQ</a></li>
+                <li><a href="http://localhost:8080/fr/contact.html">Nous contacter</a></li>
+                <li class="menu_deroulant"><a href="http://localhost:8080/fr/inscription_connexion.html">Se connecter</a>
+                    <!-- &ensp permet de créer un espace double-->
+                    <ul class="sous">
+                        <li><a href="http://localhost:8080/fr/inscription.html">Inscription</a></li>
+                        <li><a href="http://localhost:8080/fr/connexion.html">Connexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="langues">
+            <!-- choix de la langue-->
+            <a class="drapeau-link" href="http://localhost:8080/fr/inscription">
+                <img class="drapeau" src="C:\Users\Côme\Desktop\Inscrption psi co/logo france.png" alt="français" title="Cliquez pour passer le site en français">
+            </a>
+            <a class="drapeau-link" href="http://localhost:8080/en/404">
+                <img class="drapeau" src="C:\Users\Côme\Desktop\Inscrption psi co/logo angleterre.png" alt="anglais" title="Click here to translate the site in English">
+            </a>
+            <a class="drapeau-link" href="http://localhost:8080/pl/404">
+                <img class="drapeau" src="C:\Users\Côme\Desktop\Inscrption psi co/logo arabe.png" alt="arabe" title="ااضغط هنا لتحويل الموقع إلى العربية ">
+            </a>
+            <a class="drapeau-link" href="http://localhost:8080/pl/404">
+                <img class="drapeau" src="C:\Users\Côme\Desktop\Inscrption psi co/logo pologne.png" alt="polonais" title="Kliknij tutaj, aby przejść do strony w języku polskim">
+            </a>
+        </div>
+
+    </header>
+
+
+    <div id="contenu">
+        <div>
+            <nav>
+                <ul id="menu_utilisateur">
+                    <li class="menu_deroulant"><a href="http://localhost:8080/fr/projet.html">Notre produit  </a>
+                        <ul class="sous">
+                            <li><a href="http://localhost:8080/fr/inscription#">Déroulé des tests</a></li>
+                            <li><a href="http://localhost:8080/fr/inscription#">Fréquence cardiaque</a></li>
+                            <li><a href="http://localhost:8080/fr/inscription#">Température de la peau</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://localhost:8080/fr/inscription#">Mon profil <!--(si non connecté, renvoyer sur la page de connexion)--></a></li>
+                    <li><a href="http://localhost:8080/fr/inscription#">un autre outil de nav</a></li>
+                </ul>
+            </nav>
+        </div>
+        <form class="form_inscription" method="POST" action="http://localhost:8080/fr/inscription">
+
+            <div class="form-group">
+                <label for="nom" class="form-control-label"></label> <br>
+                <input id="nom" class="form-control" name="nom" value="" placeholder="  NOM" type="text" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-4">
+				</div>
+			<div class="form-group">
+                <label for="prenom" class="form-control-label"></label> <br>
+                <input id="prenom" class="form-control" name="prenom" value="" placeholder="  Prénom" type="text" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-5">
+				</div>
+			<div class="form-group">
+                <label for="email" class="form-control-label"></label> <br>
+                <input id="email" class="form-control" name="email" value="" placeholder="  Adresse Mail" type="email" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-6">
+				</div>
+			<div class="form-group">
+                <label for="password" class="form-control-label"></label> <br>
+                <input id="password" class="form-control" name="password" value="" placeholder="  Mot de passe" type="password" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-2">
+				</div>
+			<div class="form-group">
+                <label for="passwordRpt" class="form-control-label"></label> <br>
+                <input id="passwordRpt" class="form-control" name="passwordRpt" value="" placeholder="  Répéter mot de Passe" type="password" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-3">
+				</div>
+			<div class="form-group">
+                <label for="adresse" class="form-control-label"></label> <br>
+                <input id="adresse" class="form-control" name="adresse" value="" placeholder="  Adresse" type="text" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-7">
+				</div>
+			<div class="form-group">
+                <label for="numeroTelephone" class="form-control-label"></label> <br>
+                <input id="numeroTelephone" class="form-control" name="numeroTelephone" value="" placeholder="  Numéro de téléphone" type="text" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-8">
+				</div>
+			<div class="form-group">
+                <label for="birthday" class="form-control-label">Date de naissance</label> <br>
+                <input id="birthday" class="form-control" name="birthday" value="2020-03-23" min="1900-1-1" max="2100-1-1" type="date" required="" data-kwimpalastatus="alive" data-kwimpalaid="1584970798289-9">
+				</div>
+		    <div class="form-group">
+                <label for="sexe" class="form-control-label">Sexe</label> <br>
+                <select id="sexe" class="form-control" name="sexe" required=""><option value="H">Homme</option><option value="F">Femme</option><option value="NR">non renseigné</option></select></div> <button type="submit" class="btn-submit">S'inscrire</button>
+        </form>
+    </div>
+    <footer>
+        <ul id="footer">
+            <li><a href="http://localhost:8080/fr/cgu.html" title="Afficher les conditions générales d&#39;utilisation du site">Conditions générales d'utilisation</a></li>
+            <!--<li><a href="mentions_legales.html" title="Afficher les mentions légales du site">Mentions légales</a></li>-->
+            <li><a href="http://localhost:8080/fr/contact.html" title="Nous contacter">Nous contacter</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
