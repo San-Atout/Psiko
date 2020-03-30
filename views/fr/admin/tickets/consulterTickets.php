@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"]))
     header("Location: /fr/connexion/");
     exit();
 }
+if ($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getRang() != "gestionnaire")
+{
+    header("Location: /fr/401");
+    exit();
+}
+
 $ticketId = $params["ticketId"];
 $db = new \Psiko\database\TicketsTable();
 $ticket =  $db->selectTicketByID($ticketId);
@@ -54,8 +60,22 @@ else
         if ($link != "") echo '<a href="/'.$link.'"  target="_blank"><button class="btn btn-neutral">Fichier numero '.$i.'</button></a> <br>';
         $i++;
     }
+    if (!$ticket->isArchive())
+    {
+        echo '<a class="center" href="/fr/admin/tickets/'.$ticketId.'/changer-niveau-probleme/">
+            <button class="btn-repondre btn-neutral">Changer le niveau de problème</button>
+        </a>';
+        if ($_SESSION["auth"]->getRang() != "administrateur")
+        {
+            echo "<a class=\"center\" href=''>
+        <button class=\"btn-repondre btn-negatif\">Envoyer au Administrateur</button>
+    </a>";
+        }
+
+
+        echo '<a class="center" href="/fr/admin/tickets/'.$ticketId.'/repondre/">
+        <button class="btn-repondre btn-good">Ajouter une réponse</button>
+    </a>';
+    }
     ?>
-    <a class="center" href="">
-        <button class="btn-repondre btn-good">Répondre</button>
-    </a>
 </div>

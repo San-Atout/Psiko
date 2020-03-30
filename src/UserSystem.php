@@ -5,23 +5,26 @@ namespace Psiko;
 
 
 use DateTime;
+use Psiko\database\userTable;
 use Psiko\Entity\userEntity;
 use Psiko\helper\Notification;
 
 class UserSystem
 {
 
+    private userTable $userDatabse;
+
     public function __construct()
     {
+        $this->userDatabase = new \Psiko\database\userTable();
 
     }
 
     public function authentification($email, $password, $langue)
     {
         $result = array();
-        $userDatabase = new \Psiko\database\userTable();
 
-        $user = $userDatabase->getUserByMail($email);
+        $user = $this->userDatabase->getUserByMail($email);
         if (!empty($user))
         {
             if (password_verify($password,$user[0]->password))
@@ -47,10 +50,9 @@ class UserSystem
 
     public function inscription($POST, $langue)
     {
-        $userDatabase = new \Psiko\database\userTable();
 
         $result = array();
-        $isNotInDatabase = $userDatabase->isUserInDatabase($POST["prenom"], $_POST["nom"], $POST["email"]);
+        $isNotInDatabase = $this->userDatabase->isUserInDatabase($POST["prenom"], $_POST["nom"], $POST["email"]);
         $isMoreThan16 =  DateTime::createFromFormat("Y-m-d", $POST["birthday"])->diff(new DateTime())->y >= 16 ;
         $isSamePassword = $POST["password"] === $POST["passwordRpt"];
         var_dump($isNotInDatabase );
@@ -62,7 +64,7 @@ class UserSystem
                 $POST["numeroTelephone"],$POST["sexe"],$password,new DateTime(),
                 DateTime::createFromFormat("Y-m-d", $POST["birthday"]),1,
                 "utilisateur",false,"default");
-            $userDatabase->insertNewUser($user);
+            $this->userDatabase->insertNewUser($user);
         }
         else
         {
@@ -79,5 +81,15 @@ class UserSystem
         setcookie('remember',NULL,-1);
         unset($_SESSION['auth']);
         return "Vous avez bien été déconnecté";
+    }
+
+    public function getUserById($idUtilisateur)
+    {
+        $user = $this->userDatabase->getUserById($idUtilisateur);
+        return  new userEntity($user->id,$user->prenom,$user->nom,$user->email,$user->adresse,$user->telephone,
+            $user->sexe,$user->password,
+            DateTime::createFromFormat("Y-m-d",$user->dateInscription),
+            DateTime::createFromFormat("Y-m-d",$user->birthday),$user->ecoleId,
+            $user->rang,$user->valider,$user->photoPicture);
     }
 }

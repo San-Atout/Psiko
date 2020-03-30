@@ -34,7 +34,7 @@ class form
             </div>';
     }
 
-    public function inputSelect(string $name, string $label, array $option)
+    public function inputSelect(string $name, string $label, array $option,?String $select)
     {
         $require = 'required';
         $class = $this->getInputClass($name);
@@ -43,7 +43,14 @@ class form
             <label for="'.$name.'" class="'.$class .'-label">'.$label.'</label> <br>
             <select id="'.$name.'" class="'.$class .'" name="'.$name.'" '.$require.' >';
             foreach ($option as $key => $value) {
-                $return = $return . '<option value="'.$key.'">'.$value.'</option>';
+                if ($select === $key)
+                {
+                    $return = $return . '<option value="'.$key.'" selected="selected">'.$value.'</option>';
+                }
+                else
+                {
+                    $return = $return . '<option value="'.$key.'">'.$value.'</option>';
+                }
             }
 
             return $return.'</select></div>';

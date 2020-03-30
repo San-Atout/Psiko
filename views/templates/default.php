@@ -19,7 +19,7 @@ $database->getPDO();
     <meta charset= "utf-8" />
     <link rel="stylesheet" href="/CSS/main.css"/>											<!--choisir le fichier CSS qui va bien-->
 
-    <link rel="icon" type="png" href="/Images/Infinite_measures.png" />				<!-- Logo de la page sur l'onglet-->
+    <link rel="icon" type="png" href="/Images/icon.png" />				<!-- Logo de la page sur l'onglet-->
     <title>Infinite Measures</title>   																<!-- Mettre le titre de la page-->
 </head>
 <body id="page">

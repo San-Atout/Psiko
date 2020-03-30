@@ -18,6 +18,6 @@ $form = new \Psiko\helper\form();
     <?= $form->input("adresse","Votre adresse","text",true,"JaimeLesMangarine")?>
     <?= $form->input("numeroTelephone","Votre Numero de téléphone","text",true,"0601020304")?>
     <?= $form->inputDate("birthday","Date de naissance","1900-1-1","2100-1-1")?>
-    <?= $form->inputSelect("sexe","Sexe",array("H" => "Homme","F" => "Femme", "NR" => "non renseigné"))?>
+    <?= $form->inputSelect("sexe","Sexe",array("H" => "Homme","F" => "Femme", "NR" => "non renseigné"),"NR")?>
     <button type="submit" class="btn-submit">S'inscrire</button>
 </form>

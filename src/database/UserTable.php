@@ -54,4 +54,10 @@ class userTable
         $this->database->prepare($sql,$values);
 
     }
+
+    public function getUserById($id)
+    {
+        $prepare = "SELECT * FROM psiko.user WHERE `id` = :id";
+        return $this->database->prepare($prepare,array(":id"=>$id))[0];
+    }
 }

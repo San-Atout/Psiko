@@ -32,8 +32,6 @@ header
 .image_site{
     margin-top: auto;
     margin-bottom: auto;
-    width:5%;
-    min-width:16%;
 }
 
 /*Barre de navigation*/
@@ -41,7 +39,8 @@ nav
 {
     width: 100%;
     height: 100%;
-    margin-left: 5%;
+    margin-left: auto;
+    margin-right: auto;
     background-color:white;;
     position: relative;
     top: 0;
@@ -478,11 +477,43 @@ select{
     background-color: rgb(208,232,255);
 }
 
+/** Boutton CSS**/
+.btn-negatif
+{
+    background-color: #5c0000;
+    color: #FFFFFF;
+}
+
+.btn-neutral
+{
+    background-color: #0005d5;
+    color: #FFFFFF;
+}
+
+.btn-good
+{
+    background-color: #0d4d00;
+    color: #FFFFFF;
+}
+
+.btn
+{
+    margin: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 1.5em;
+    border: none;
+    width: auto;
+}
+
+
 /** CSS pour l'envoie de Tickets**/
 
 .center{
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .ticket-formulaire textarea
@@ -504,4 +535,81 @@ h1
 {
     max-width: 45vw;
     overflow-wrap: break-word;
+}
+
+.mes-tickets
+{
+    border: #000;
+    border-collapse: collapse;
+
+}
+
+.mes-tickets  td, .mes-tickets th
+{
+    text-align: center;
+    width: auto;
+    padding: 5px 10px;
+    margin: 0;
+    border: solid #000000;
+}
+.tickets-tableau-niveau-problem-Inconnu
+{
+    background-color: #383838;
+}
+
+.tickets-tableau-niveau-problem-Bas
+{
+    background-color: #028800;
+}
+
+.tickets-tableau-niveau-problem-Moyen
+{
+    background-color: #d06000;
+}
+
+.tickets-tableau-niveau-problem-Haut
+{
+    background-color: #b8000c;
+
+}
+
+.tickets-tableau-niveau-problem-Critique
+{
+    background-color: #380004;
+}
+
+.mes-tickets th
+{
+    color: #FFFFFF;
+    background-color: #1a1141;
+}
+
+.mes-tickets-td-2
+{
+   background-color:  rgb(208,185,255);
+}
+
+.ticket-individuel
+{
+   display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    max-width: 40vw;
+    border: solid black 5px;
+}
+
+.ticket-contenue
+{
+    min-width: 50%;
+    padding: 1vw;
+    background-color: rgba(82, 82, 82, 0.53);
+    text-align: justify;
+}
+
+.btn-repondre
+{
+    justify-content: center;
+    margin: auto;
+    font-size: 2em ;
+    padding: 0.5em;
 }

@@ -21,7 +21,9 @@
             <li><a href="<?=$routeur->getUrl("NousContacter fr") ?>">Nous contacter</a></li>
             <?php if(isset($_SESSION["auth"]))
                 {
-                        echo '
+                    if ($_SESSION["auth"]->getRang() === "utilisateur")
+                    {
+                       $menu = '
                     <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> <!-- &ensp permet de créer un espace double-->
                         <ul class="sous">
                             <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
@@ -31,6 +33,37 @@
                             <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>
                         </ul>
                     </li>';
+                    }
+                    elseif ($_SESSION["auth"]->getRang() === "gestionnaire")
+                    {
+                        $menu = '
+                    <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> <!-- &ensp permet de créer un espace double-->
+                        <ul class="sous">
+                            <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminResultat fr") .'">Consulter les résultats</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminUser fr") .'">Administer les utilisateurs</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminTickets fr") .'">Administer les tickets</a></li>
+                            <li><a href="'.$routeur->getUrl("LancerUnTest fr") .'"> Lancer un test</a></li>
+                            <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>
+                        </ul>
+                    </li>';
+                    }
+                    elseif ($_SESSION["auth"]->getRang() === "administrateur")
+                    {
+                        $menu = '
+                    <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> <!-- &ensp permet de créer un espace double-->
+                        <ul class="sous">
+                            <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminResultat fr") .'">Consulter les résultats</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminUser fr") .'">Administer les utilisateurs</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminTickets fr") .'">Administer les tickets</a></li>
+                            <li><a href="'.$routeur->getUrl("LancerUnTest fr") .'"> Lancer un test</a></li>
+                            <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>
+                        </ul>
+                    </li>';
+                    }
+
+                    echo $menu;
                 }
                 else
                 {

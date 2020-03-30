@@ -17,7 +17,7 @@ class Routeur extends \AltoRouter
         $this->publicpath = "\\" . $publicpath;
         $this->viewpath = $viewpath;
         $this->router = new AltoRouter();
-        $this->router->addMatchTypes(array('animeSlug' => '[a-zA-Z0-9-_]++'));
+        $this->router->addMatchTypes(array('deleteType' => '[a-zA-Z0-9-_]++'));
     }
 
     public function get(
@@ -68,7 +68,14 @@ class Routeur extends \AltoRouter
             ->get("/fr/","fr/index", "Acceuil fr")
 
             ->get("/fr/tickets/","fr/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket fr")
-            ->get("/fr/tickets/[animeSlug:i]","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
+            ->get("/fr/tickets/[i:ticketId]/","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/","fr/admin/tickets/consulterTickets","TicketAdminIndividuel fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/repondre/","fr/admin/tickets/ajouterReponse","TicketAdminReponse fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/rouvrir/","fr/admin/tickets/rouvrir","TicketAdminRouvrir fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/changer-niveau-probleme/","fr/admin/tickets/changerLevelPb","ChangerLevelPb fr")
+            ->get("/fr/tickets/[i:ticketId]/repondre/","fr/utilisateur/ticketSystem/repondreTicket","RepondreTicket fr")
+            ->get("/fr/admin/tickets/[i:idTickets]/fermer/[deleteType:idDelete]/","fr/admin/tickets/cloturerTicket", "fermerAdmin fr")
+            ->get("/fr/tickets/[i:idTickets]/fermer/[deleteType:idDelete]/","fr/admin/tickets/fermerUtilisateur", "fermerUtilisateur fr")
             ->get("/fr/mes-tickets/","fr/utilisateur/ticketSystem/mestickets","MesTickets fr")
             /*Partie de l'utilisateur*/
             ->get("/fr/connexion/","fr/utilisateur/connexionSystem/connexion", "Connexion fr")
@@ -78,11 +85,17 @@ class Routeur extends \AltoRouter
             ->get("/fr/deconnexion/","fr/utilisateur/connexionSystem/deconnexion", "Deconnexion fr")
             /*Erreur HTTP*/
             ->get("/fr/404/","fr/erreur/404", "404 fr")
+            ->get("/fr/401/","fr/erreur/401", "404 fr")
             /*Partie Generale*/
             ->get("/fr/nous/","fr/general/nous","Nous fr")
             ->get("/fr/mentionlegal/","fr/general/mentionLegal", "mentionLegal fr")
             ->get("/fr/faq/","/fr/general/FAQ","FAQ fr")
             ->get("/fr/nous-contacter/","/fr/general/contact","NousContacter fr")
+            /*Partie de l'administration*/
+            ->get("/fr/admin/tickets/","fr/admin/tickets/administrationTicket","AdminTickets fr")
+            ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
+            ->get("/fr/admin/lancer-test/","fr/admin/tests/lancerTest","LancerUnTest fr")
+            ->get("/fr/admin/consulterResultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
         ;
 
         return $this;
