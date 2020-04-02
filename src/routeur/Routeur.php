@@ -1,5 +1,5 @@
 <?php
-namespace Psiko;
+namespace Psiko\routeur;
 use \AltoRouter;
 
 class Routeur extends \AltoRouter
@@ -10,13 +10,14 @@ class Routeur extends \AltoRouter
     private $pageName;
     private $app;
     public  $pageData;
+    public $langue;
 
     public function __construct(string $viewpath, string  $publicpath)
     {
         $this->publicpath = "\\" . $publicpath;
         $this->viewpath = $viewpath;
         $this->router = new AltoRouter();
-        $this->router->addMatchTypes(array('animeSlug' => '[a-zA-Z0-9-_]++'));
+        $this->router->addMatchTypes(array('deleteType' => '[a-zA-Z0-9-_]++'));
     }
 
     public function get(
@@ -35,7 +36,9 @@ class Routeur extends \AltoRouter
     public function run():self
     {
         $this->pageName = null;
-        $match = $this->router->match();
+        $this->langue = explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
+        $requestUrl = substr( $_SERVER['REQUEST_URI'], -1) == "/" ? $_SERVER['REQUEST_URI'] : $_SERVER['REQUEST_URI'].'/' ;
+        $match = $this->router->match($requestUrl);
         $view = $match['target'];
         $params = $match['params'];
         if ($view !== null)
@@ -62,13 +65,37 @@ class Routeur extends \AltoRouter
     {
         $this->pageData = array();
         $this->get('/', 'index','Acceuil base')
-
             ->get("/fr/","fr/index", "Acceuil fr")
-            ->get("/fr/connexion","fr/utilisateur/login", "Connexion fr")
-            /*Erreur HTTP*/
-            ->get("/fr/404","fr/erreur/404", "404 fr")
 
-            ->get("/fr/test","fr/index", "test fr")
+            ->get("/fr/tickets/","fr/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket fr")
+            ->get("/fr/tickets/[i:ticketId]/","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/","fr/admin/tickets/consulterTickets","TicketAdminIndividuel fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/repondre/","fr/admin/tickets/ajouterReponse","TicketAdminReponse fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/rouvrir/","fr/admin/tickets/rouvrir","TicketAdminRouvrir fr")
+            ->get("/fr/admin/tickets/[i:ticketId]/changer-niveau-probleme/","fr/admin/tickets/changerLevelPb","ChangerLevelPb fr")
+            ->get("/fr/tickets/[i:ticketId]/repondre/","fr/utilisateur/ticketSystem/repondreTicket","RepondreTicket fr")
+            ->get("/fr/admin/tickets/[i:idTickets]/fermer/[deleteType:idDelete]/","fr/admin/tickets/cloturerTicket", "fermerAdmin fr")
+            ->get("/fr/tickets/[i:idTickets]/fermer/[deleteType:idDelete]/","fr/admin/tickets/fermerUtilisateur", "fermerUtilisateur fr")
+            ->get("/fr/mes-tickets/","fr/utilisateur/ticketSystem/mestickets","MesTickets fr")
+            /*Partie de l'utilisateur*/
+            ->get("/fr/connexion/","fr/utilisateur/connexionSystem/connexion", "Connexion fr")
+            ->get("/fr/inscription/","fr/utilisateur/connexionSystem/inscription", "Inscription fr")
+            ->get("/fr/utilisateur/profil/","fr/utilisateur/profil", "Profil fr")
+            ->get("/fr/utilisateur/resultats/","fr/utilisateur/resultat", "Resultats fr")
+            ->get("/fr/deconnexion/","fr/utilisateur/connexionSystem/deconnexion", "Deconnexion fr")
+            /*Erreur HTTP*/
+            ->get("/fr/404/","fr/erreur/404", "404 fr")
+            ->get("/fr/401/","fr/erreur/401", "404 fr")
+            /*Partie Generale*/
+            ->get("/fr/nous/","fr/general/nous","Nous fr")
+            ->get("/fr/mentionlegal/","fr/general/mentionLegal", "mentionLegal fr")
+            ->get("/fr/faq/","/fr/general/FAQ","FAQ fr")
+            ->get("/fr/nous-contacter/","/fr/general/contact","NousContacter fr")
+            /*Partie de l'administration*/
+            ->get("/fr/admin/tickets/","fr/admin/tickets/administrationTicket","AdminTickets fr")
+            ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
+            ->get("/fr/admin/lancer-test/","fr/admin/tests/lancerTest","LancerUnTest fr")
+            ->get("/fr/admin/consulterResultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
         ;
 
         return $this;
@@ -77,7 +104,9 @@ class Routeur extends \AltoRouter
     public function getAllPageAnglais():self
     {
         $this->pageData = array();
-        $this->get("/en/","en/index", "Acceuil en")
+        $this
+             ->get("/en","en/index", "Acceuil en")
+             ->get("/en/","en/index", "Acceuil en")
              ->get("/en/login","en/utilisateur/login", "Connexion en")
              ->get("/en/langageNotSuported","en/erreur/langageNotSuported", "langageNonSupporter en")
             /*Erreur HTTP*/
@@ -90,10 +119,12 @@ class Routeur extends \AltoRouter
     public function getAllPagePolonais():self
     {
         $this->pageData = array();
-        $this->get("/pl/","pl/index", "Acceuil pl")
+        $this
+             ->get("/pl","pl/index", "Acceuil pl")
+             ->get("/pl/","pl/index", "Acceuil pl")
              ->get("/pl/logowania","pl/utilisateur/login", "Connexion pl")
             /*Erreur HTTP*/
-            ->get("/pl/404","pl/erreur/404", "404 pl")
+             ->get("/pl/404","pl/erreur/404", "404 pl")
         ;
 
         return $this;
@@ -102,10 +133,12 @@ class Routeur extends \AltoRouter
     public function getAllPageArabe():self
     {
         $this->pageData = array();
-        $this->get("/ar/","ar/index", "Acceuil ar")
-            ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
+        $this
+             ->get("/ar","ar/index", "Acceuil ar")
+             ->get("/ar/","ar/index", "Acceuil ar")
+             ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
             /*Erreur HTTP*/
-            ->get("/pl/404","pl/erreur/404", "404 ar")
+             ->get("/pl/404","pl/erreur/404", "404 ar")
         ;
 
         return $this;
@@ -133,10 +166,11 @@ class Routeur extends \AltoRouter
             {
                 if ($langue !== $urlData[0])
                 {
-                    $matchTest = $this->router->match("/".$langue.$urlTest);
+                    $matchTest = $this->router->match("/".$urlTest);
                     if ($matchTest != null)
                     {
-                        header("Location: /".$langue.$urlTest);
+                        $this->langue = $langue;
+                        header("Location: /".$langue.$urlTest,true, 303);
                         exit();
                     }
                 }
@@ -146,6 +180,7 @@ class Routeur extends \AltoRouter
         }
         else
         {
+            $this->langue = "en";
             header("Location: /en/langageNotSuported");
             exit();
         }
@@ -154,11 +189,15 @@ class Routeur extends \AltoRouter
     public function getPageOtherLanguage()
     {
         $result = array();
-        $i = 0;
         foreach ($this->router->routes as $r)
         {
            if (explode(" ",$r[3])[0] === explode(" ", $this->pageName)[0]) $result[explode(" ",$r[3])[1]] = $this->getUrl($r[3]);
         }
         return $result;
+    }
+
+    public function getLangue()
+    {
+        return $this->langue;
     }
 }

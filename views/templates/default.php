@@ -9,11 +9,26 @@ $lienAr = isset($autrePages["ar"])? $autrePages["ar"] : $routeur->getUrl("404 ar
 $lienFr = isset($autrePages["fr"])? $autrePages["fr"] : $routeur->getUrl("404 fr");
 $lienEn = isset($autrePages["en"])? $autrePages["en"] : $routeur->getUrl("404 en");
 $lienPl = isset($autrePages["pl"])? $autrePages["pl"] : $routeur->getUrl("404 pl");
+$database =  new \Psiko\database\MysqlDatabase("psiko");
+$database->getPDO();
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta lang="<?=$routeur->getLangue()?>">
+    <meta charset= "utf-8" />
+    <link rel="stylesheet" href="/CSS/main.css"/>											<!--choisir le fichier CSS qui va bien-->
 
-<ul>
-    <li><a href="<?=$lienFr?>">vers le site en fr</a></li>
-    <li><a href="<?=$lienEn?>">vers le site en en</a></li>
-    <li><a href="<?=$lienAr?>">vers le site en ar</a></li>
-    <li><a href="<?=$lienPl?>">vers le site en pl</a></li>
-</ul>
+    <link rel="icon" type="png" href="/Images/icon.png" />				<!-- Logo de la page sur l'onglet-->
+    <title>Infinite Measures</title>   																<!-- Mettre le titre de la page-->
+</head>
+<body id="page">
+    <?php require 'header'.DIRECTORY_SEPARATOR.$routeur->langue.'.php'; ?>
+
+
+    <div id="contenu">
+       <?=$contenue?>
+    </div>
+    <?php require 'footer'.DIRECTORY_SEPARATOR.$routeur->langue.'.php'?>
+    </body>
+</html>

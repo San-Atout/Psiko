@@ -1,2 +1,2 @@
 <?php
-echo "CONNEXION FR";
+echo "CONNEXION EN";
