@@ -59,7 +59,7 @@ class Notification
     public static function errorExtensionNotSupported($langue)
     {
         //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
-        if ($langue === "fr") $result = "le mail et le mots de passe ne corresponde pas";
+        if ($langue === "fr")      $result = "le mail et le mots de passe ne corresponde pas";
         else if ($langue === "ar") $result = "";
         else if ($langue === "pl") $result = "";
         else                       $result = "";
@@ -69,7 +69,7 @@ class Notification
     public static function errorFileTropLourd($langue, $depassement)
     {
         //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
-        if ($langue === "fr") $result = "Nous sommes désolé mais votre fichier dépasse la limite de ".$depassement. " Ko";
+        if ($langue === "fr")      $result = "Nous sommes désolé mais votre fichier dépasse la limite de ".$depassement. " Ko";
         else if ($langue === "ar") $result = "";
         else if ($langue === "pl") $result = "";
         else                       $result = "";
@@ -79,7 +79,67 @@ class Notification
     public static function errorUploadFiles($langue)
     {
         //TODO faire les trads des erreurs le gars n'as pas rentré le bon mots de passe polonais / arabes / anglais
-        if ($langue === "fr") $result = "Une erruer est arrivé durant l'upload du fichier";
+        if ($langue === "fr")      $result = "Une erruer est arrivé durant l'upload du fichier";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function successAddNewQuestion(String $langue)
+    {
+        //TODO faire les trads du succes de l'ajout de la nouvelle question polonais / arabes / anglais
+        if ($langue === "fr")      $result = "La question a bien été ajouté à la FAQ !";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function errorAddNewQuestion(String $langue)
+    {
+        //TODO faire les trads de l'erreur  de l'ajout de la nouvelle question polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Un problème est apparu durant l'ajout de la question...";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function successUpdateFAQ(string $langue)
+    {
+        //TODO faire les trads de l'erreur  de l'ajout de la nouvelle question polonais / arabes / anglais
+        if ($langue === "fr")      $result = "La modification de la question a bien été effectué ";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function errorUpdateFAQ(string $langue)
+    {
+        //TODO faire les trads de l'erreur lors de la modification d'une question polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Une erreur est intervenu dans le processus de modification de la question";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function successDeconnexion($langue)
+    {
+        //TODO faire les trads de l'erreur lors de la déconnexion polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Vous avez bien été déconnecté";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function successLogIn($langue)
+    {
+        //TODO faire les trads pour le success de la connexion polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Vous êtes maintenant connecté";
         else if ($langue === "ar") $result = "";
         else if ($langue === "pl") $result = "";
         else                       $result = "";

@@ -23,8 +23,7 @@ if (!empty($_POST))
 <div class="center">
     <h1><?=$ticket->getTitre()?></h1>
     <form method="POST" action="" enctype="multipart/form-data" class="form-group ticket-formulaire">
-        <?= $form->inputSelect("levelProblem","Le nouveau niveau du problème",
-            array("Inconnu" => "inconnu", "Bas" => "bas","Moyen" => "moyen","Haut" => "haut","Critique" => "Critique"),$ticket->getNiveauProblem())?>
+        <?= $form->inputSelect("levelProblem", "Le nouveau niveau du problème", array("Inconnu" => "inconnu", "Bas" => "bas", "Moyen" => "moyen", "Haut" => "haut", "Critique" => "Critique"), $ticket->getNiveauProblem(), true)?>
         <?= $form->textarea("contenue", "La raison du changement du problème: ");?>
         <button type="submit" class="btn-submit center btn-good">Envoyer</button>
     </form>

@@ -20,9 +20,7 @@ $form = new \Psiko\helper\form();
 <div class="center">
     <h1>Créer une question de FAQ</h1>
     <form method="POST" action="" class="form-group ticket-formulaire">
-        <?= $form->inputSelect("langue","La langue : ",
-            array("fr" => "Français", "ar" => "Arabe","en" => "Anglais","pl" => "Polonais"),
-            $this->getLangue())?>
+        <?= $form->inputSelect("langue", "La langue : ", array("fr" => "Français", "ar" => "Arabe", "en" => "Anglais", "pl" => "Polonais"), $this->getLangue(), true)?>
         <?= $form->input("question", "La question","text",true,"question sur la vie, l'univers et le reste")?>
         <?= $form->textarea("reponse", "La réponse que vous souhaiter apporter");?>
         <?= $form->input("isAnonyme","Répondre anonymement","checkbox",false,null)?>

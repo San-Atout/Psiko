@@ -96,6 +96,14 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
             ->get("/fr/admin/lancer-test/","fr/admin/tests/lancerTest","LancerUnTest fr")
             ->get("/fr/admin/consulterResultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
+            /*Administration FAQ*/
+
+            ->get("/fr/admin/faq/","fr/admin/faq/consulterToutesLesQuestions","AdminFAQ fr")
+            ->get("/fr/admin/faq/ajouter/","fr/admin/faq/ajouterReponse","FAQAjouter fr")
+            ->get("/fr/admin/faq/[i:questionId]/","fr/admin/faq/consulterUneQuestion","FAQConsulter fr")
+            ->get("/fr/admin/faq/[i:questionId]/modifier/","fr/admin/faq/modifQuestion","FAQModif fr")
+            ->get("/fr/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","fr/admin/faq/supprimerQuestion", "FAQSupprimer fr")
+
         ;
 
         return $this;

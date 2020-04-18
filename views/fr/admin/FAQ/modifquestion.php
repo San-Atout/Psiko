@@ -25,9 +25,7 @@ $question = $FAQSystem->getQuestionByID($params["questionId"]);
 <div class="center">
     <h1>Créer une question de FAQ</h1>
     <form method="POST" action="" class="form-group ticket-formulaire">
-        <?= $form->inputSelect("langue","La langue : ",
-            array("fr" => "Français", "ar" => "Arabe","en" => "Anglais","pl" => "Polonais"),
-            $question->getLangue())?>
+        <?= $form->inputSelect("langue", "La langue : ", array("fr" => "Français", "ar" => "Arabe", "en" => "Anglais", "pl" => "Polonais"), $question->getLangue(), true)?>
         <div class="form-group">
             <label for="question" class="form-control-label">La question</label> <br>
             <input id="question" class="form-control" name="question" value="<?=htmlspecialchars($question->getQuestion())?>"

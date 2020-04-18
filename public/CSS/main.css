@@ -244,9 +244,6 @@ nav > ul li:hover .sous
     min-height: 550px;
 }
 
-section{
-}
-
 footer{
     flex-direction: column;
     left: 0; right: 0; bottom: 0;
@@ -299,10 +296,6 @@ html
 }
 
 
-#page{
-    background: #BFBCE6;
-    padding: 0;
-}
 
 #footer{
     display: flex;
@@ -475,6 +468,10 @@ select{
     margin-bottom: 5%;
     text-transform: uppercase;
     background-color: rgb(208,232,255);
+    display: block;
+    text-align: center;
+    vertical-align:middle;
+
 }
 
 /** Boutton CSS**/
@@ -512,7 +509,6 @@ select{
 .center{
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
@@ -612,4 +608,128 @@ h1
     margin: auto;
     font-size: 2em ;
     padding: 0.5em;
+}
+
+/*CGU*/
+#CGU
+{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    text-align: justify;
+}
+
+
+.checkbox
+{
+    display: block;
+    right: auto;
+    height: 30px;
+    width: 30px;
+}
+.checkbox-label
+{
+    position: relative;
+    left:35px;
+    top: 25px;
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+/* Partie du code CSS qui gère les balises spoiler */
+
+div.spoiler {
+    width: 100%;
+    position: relative;
+    word-wrap: break-word;
+    text-align: justify;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+div.spoiler > h4
+{
+    position: relative;
+}
+div.spoiler input.boutonSpoil {
+    background-color: rgba(255,255,255,0);
+    border: none;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+
+div.spoiler div.contenuSpoiler {
+    display: none;
+    width: 100%;
+}
+
+div.contenuSpoiler
+{
+    position: relative;
+    display: flex;
+}
+/*FIN de la partie du code CSS qui gère les balises spoilers*/
+
+.faq
+{
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.consulter-faq-admin
+{
+    max-width: 50%;
+}
+
+.consulter-faq-admin > h1,.consulter-faq-admin > h2, .consulter-faq-admin > p
+{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.faq-link-aide
+{
+    text-decoration: none;
+    margin-right: 2%;
+}
+
+/**Nous contacter**/
+#NousContacter
+{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#titre_CGU
+{
+    text-align: center;
+    text-align: -moz-center;
+}
+
+/*CSS - Notification*/
+.notification
+{
+    font-size: 1.5em;
+    padding: 1.5em;
+    max-width: 50%;
+    border-radius: 1em;
+    color: #FFFFFF;
+    text-align: -moz-center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.success
+{
+    background-color: #49a54d;
+}
+.warning
+{
+    background-color: #ccb037 ;
+}
+.error
+{
+    background-color: #9b3a3a;
 }

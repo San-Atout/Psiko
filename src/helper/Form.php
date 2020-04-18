@@ -12,9 +12,9 @@ class form
     {
     }
 
-    public function inputInt(string $name, string $label, ?int $value=0)
+    public function inputInt(string $name, string $label, ?int $value=0, ?bool $required=true)
     {
-        $require = 'required';
+        $require = ($required) ? 'required' : '';
         $class = $this->getInputClass($name);
         return '
             <div class="form-group">
@@ -23,9 +23,9 @@ class form
             </div>';
     }
 
-    public function inputDate(string $name, string $label, string $min, string $max)
+    public function inputDate(string $name, string $label, string $min, string $max, ?bool $required=true)
     {
-        $require = 'required';
+        $require = ($required) ? 'required' : '';
         $class = $this->getInputClass($name);
         return '
             <div class="form-group">
@@ -34,9 +34,9 @@ class form
             </div>';
     }
 
-    public function inputSelect(string $name, string $label, array $option,?String $select)
+    public function inputSelect(string $name, string $label, array $option, ?String $select, ?bool $required=true)
     {
-        $require = 'required';
+        $require = ($required) ? 'required' : '';
         $class = $this->getInputClass($name);
         $return = '
             <div class="form-group">
@@ -57,9 +57,9 @@ class form
     }
 
 
-    public function textarea(string $name, string $label, ?string $value="")
+    public function textarea(string $name, string $label, ?string $value="", ?bool $required=true)
     {
-        $require = 'required';
+        $require = ($required) ? 'required' : '';
         $class = $this->getInputClass($name);
         return '
             <div class="form-group">
@@ -75,14 +75,14 @@ class form
     }
 
 
-    public function input(string $name, ?string $label, ?string $inputType,?bool $hasBr =true , ?String $placeholder): string
+    public function input(string $name, ?string $label, ?string $inputType,?bool $hasBr =true , ?String $placeholder='', ?bool $required=true): string
     {
         $value = "";
         $type = 'text';
         $br = '<br>';
         $class = $this->getInputClass($name);
         if (isset($inputType)) $type = 'type = "' . $inputType . '"';
-        $require = 'required';
+        $require = ($required) ? 'required' : '';
         if (!$hasBr)
         {
             $br = '';

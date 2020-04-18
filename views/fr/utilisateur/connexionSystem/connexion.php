@@ -3,7 +3,7 @@ if (!empty($_POST))
 {
     $user = new \Psiko\UserSystem();
     $_SESSION["notification"] = $user->authentification($_POST["email"],$_POST["password"],"fr");
-    if (empty($_SESSION["notification"]))
+    if (empty($_SESSION["notification"]["error"]))
     {
         header("Location: /fr/utilisateur/profil/");
     }

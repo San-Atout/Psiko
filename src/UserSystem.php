@@ -34,15 +34,16 @@ class UserSystem
                     DateTime::createFromFormat("Y-m-d",$user[0]->dateInscription),
                     DateTime::createFromFormat("Y-m-d",$user[0]->birthday),$user[0]->ecoleId,
                     $user[0]->rang,$user[0]->valider,$user[0]->photoPicture);
+                $result["success"] = Notification::successLogIn($langue);
             }
             else
             {
-                $result["error"]["connexion"] = Notification::errorNotifWrongPassword($langue);
+                $result["error"] = Notification::errorNotifWrongPassword($langue);
             }
         }
         else
         {
-            $result["error"]["connexion"] = Notification::errorNotifUserNotFoubnd($langue);
+            $result["error"] = Notification::errorNotifUserNotFoubnd($langue);
         }
         return $result;
     }

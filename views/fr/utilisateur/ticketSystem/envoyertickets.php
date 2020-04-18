@@ -14,7 +14,7 @@ $form = new \Psiko\helper\form();
 <div class="center">
     <h1>Envoyer un tickets</h1>
     <form method="POST" action="" enctype="multipart/form-data" class="form-group ticket-formulaire">
-        <?= $form->inputSelect("destinataire","Choisez le destinataire de votre tickets", array("admin" => "Administrateur", "gestionnaire" => "Gestionnaire"))?>
+        <?= $form->inputSelect("destinataire", "Choisez le destinataire de votre tickets", array("admin" => "Administrateur", "gestionnaire" => "Gestionnaire"), , true)?>
         <?= $form->input("titre", "Le titre du tickets","text",true,"Titre du tickets")?>
         <?= $form->textarea("contenue", "Explication de votre problème");?>
         <h2> Vous pouvez joindre trois fichier de maximum 25Mo au format PDF ou PNG/JPG pour aider a mieux comprendre votre problème</h2>

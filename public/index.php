@@ -12,6 +12,9 @@ require ("../src/TicketSystem.php");
 require ("../src/Entity/TicketsEntity.php");
 require ("../src/database/TicketsTable.php");
 require ("../src/UserSystem.php");
+require ("../src/FaqSystem.php");
+require ("../src/database/FAQTable.php");
+require ("../src/Entity/FaqEntity.php");
 
 ob_start();
 $routeur = new \Psiko\routeur\Routeur(dirname(__DIR__) . '/views', dirname(__DIR__) ."/public");
