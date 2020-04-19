@@ -55,7 +55,7 @@ else
         $i++;
     }
     ?>
-    <a class="center" href="">
+    <a class="center" href="/fr/tickets/<?=$ticket->getIdTicket()?>/repondre/">
         <button class="btn-repondre btn-good">Répondre</button>
     </a>
 </div>

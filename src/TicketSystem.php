@@ -97,7 +97,6 @@ class TicketSystem
 
     public function repondreTickets($reponse, $ticketsId, $langue,$idUtilisateur)
     {
-        $this->db->updateFileLink($this->fichierSupllementaireLink, $ticketsId);
         $this->ajouterReponse($reponse,$ticketsId,$idUtilisateur,$langue);
     }
 

@@ -7,6 +7,7 @@ if (!isset($_SESSION["auth"]))
 $ticketsId = $params["ticketId"];
 $db = new \Psiko\database\TicketsTable();
 $ticket = $db->selectTicketByID($ticketsId);
+$form = new \Psiko\helper\form();
 if (!empty($_POST))
 {
     $ticketSystem = new \Psiko\TicketSystem();

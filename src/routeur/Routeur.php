@@ -69,6 +69,8 @@ class Routeur extends \AltoRouter
 
             ->get("/fr/tickets/","fr/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket fr")
             ->get("/fr/tickets/[i:ticketId]/","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
+            ->get("/fr/tickets/[i:ticketId]/repondre/","fr/utilisateur/ticketSystem/repondreTicket","TicketUserReponse fr")
+
             ->get("/fr/admin/tickets/[i:ticketId]/","fr/admin/tickets/consulterTickets","TicketAdminIndividuel fr")
             ->get("/fr/admin/tickets/[i:ticketId]/repondre/","fr/admin/tickets/ajouterReponse","TicketAdminReponse fr")
             ->get("/fr/admin/tickets/[i:ticketId]/rouvrir/","fr/admin/tickets/rouvrir","TicketAdminRouvrir fr")
