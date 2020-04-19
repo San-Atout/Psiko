@@ -99,7 +99,7 @@ class Routeur extends \AltoRouter
             /*Administration FAQ*/
 
             ->get("/fr/admin/faq/","fr/admin/faq/consulterToutesLesQuestions","AdminFAQ fr")
-            ->get("/fr/admin/faq/ajouter/","fr/admin/faq/ajouterReponse","FAQAjouter fr")
+            ->get("/fr/admin/faq/ajouter/","fr/admin/faq/ajouterQuestion","FAQAjouter fr")
             ->get("/fr/admin/faq/[i:questionId]/","fr/admin/faq/consulterUneQuestion","FAQConsulter fr")
             ->get("/fr/admin/faq/[i:questionId]/modifier/","fr/admin/faq/modifQuestion","FAQModif fr")
             ->get("/fr/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","fr/admin/faq/supprimerQuestion", "FAQSupprimer fr")
