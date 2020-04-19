@@ -96,6 +96,7 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
             ->get("/fr/admin/lancer-test/","fr/admin/tests/lancerTest","LancerUnTest fr")
             ->get("/fr/admin/consulterResultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
+            ->get("/fr/admin/rechercheMultiple/","fr/admin/utilisateurs/rechercheMultiple","AdminRechercheMultiple fr")
         ;
 
         return $this;
