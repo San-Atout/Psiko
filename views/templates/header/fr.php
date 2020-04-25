@@ -12,8 +12,8 @@
                     <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Qui sommes nous</a></li>
                     <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Le projet</a></li>
                     <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Déroulé des tests</a></li>
-                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Fréquence cardiaques</a></li>
-                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Température de la peau</a></li>
+                    <li><a href="<?=$routeur->getUrl("frequenceCardiaque fr") ?>">Fréquence cardiaques</a></li>
+                    <li><a href="<?=$routeur->getUrl("temperature fr") ?>">Température de la peau</a></li>
 
                 </ul>
             </li>

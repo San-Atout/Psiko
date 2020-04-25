@@ -91,6 +91,9 @@ class Routeur extends \AltoRouter
             /*Partie Generale*/
             ->get("/fr/nous/","fr/general/nous","Nous fr")
             ->get("/fr/mentionlegal/","fr/general/mentionLegal", "mentionLegal fr")
+            ->get("/fr/CGU/","fr/general/CGU", "CGU fr")
+            ->get("/fr/confidentialite/","fr/general/confidentialite","confidentialite fr")
+            ->get("/fr/plan/","fr/general/structureSite","planSite fr")
             ->get("/fr/faq/","/fr/general/FAQ","FAQ fr")
             ->get("/fr/nous-contacter/","/fr/general/contact","NousContacter fr")
             /*Partie de l'administration*/
@@ -105,6 +108,13 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/faq/[i:questionId]/","fr/admin/faq/consulterUneQuestion","FAQConsulter fr")
             ->get("/fr/admin/faq/[i:questionId]/modifier/","fr/admin/faq/modifQuestion","FAQModif fr")
             ->get("/fr/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","fr/admin/faq/supprimerQuestion", "FAQSupprimer fr")
+
+            /*Description des tests*/
+            ->get("/fr/description/frequence-cardiaque/","fr/general/description/testFrequenceCardiaque","frequenceCardiaque fr")
+            ->get("/fr/description/memorisation/","fr/general/description/testMemoire","memoire fr")
+            ->get("/fr/description/reflexe-auditif/","fr/general/description/testReflexeAuditif","reflexeAuditif fr")
+            ->get("/fr/description/reflexe-visuel/","fr/general/description/testReflexeVisuel","reflexeVisuel fr")
+            ->get("/fr/description/temperature/","fr/general/description/testTemperature","temperature fr")
 
         ;
 

@@ -737,3 +737,131 @@ div.contenuSpoiler
 {
     background-color: #9b3a3a;
 }
+
+/**
+Modifier par Augustin ROUSSET-ROUVIERE
+25/04/2020
+ajout code CSS pour les pages de melvin
+**/
+
+
+#titre_CGU{
+    text-align:center;
+}
+
+
+#logoInfiniteMeasure {
+    width: 300px;
+    height: auto;
+    display:block;
+    margin-left: 280px;
+
+}
+
+#presentationTest{
+    background: #DAE7F8 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 13px #B6CBF4;
+    border-radius: 98px;
+    margin-left: 160px;
+    margin-right: 160px;
+    opacity: 1;
+    text-align: center;
+}
+
+#presentatationTest #partie1 {
+    display: inline-block;
+    border-bottom: dashed #FCF5F5;
+}
+
+
+
+#presentationTest #partie1 p{
+    text-align: center;
+    margin-left : 130px;
+    margin-right : 130px;
+    padding-top: 70px;
+    font-size: 23px;
+    color: #717481;
+
+
+}
+
+
+#partie1 ul{
+
+    display:inline-flex;
+    margin: 50px;
+    padding-bottom: 73px;
+    border-bottom: 3px dashed white;
+
+}
+#partie1 ul li img{
+    height: 230px;
+    width: auto;
+    margin-right: 90px;
+    margin-left: 90px;
+
+}
+
+#partie2 #description {
+    color: #A1C2F7;
+    font-size: 42px;
+    font-family: Roboto, sans-serif;
+    font-style: bold;
+    padding-top: 10px;
+    margin-bottom: 130px;
+}
+
+#partie2 .logo{
+    float:left;
+    margin-left: 100px;
+    width: 50px;
+    height: auto;
+
+}
+
+#partie2 .test {
+    font-family: Roboto, sans-serif;
+    font-style: bold;
+    font-size: 30px;
+    color: #717481;
+    float: left;
+    margin-left : 60px;
+}
+
+#partie2 ul  {
+    margin-bottom: 120px;
+    margin-top: 120px;
+}
+
+#partie2 .text  {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    color: #717481;
+    float:inherit;
+    margin-left : 200px;
+    margin-right: 80px;
+    display: inline-block;
+    text-align: justify;
+}
+
+#partieReflexeVisuel li img{
+    width: 100px;
+
+}
+
+#partie2 {
+    margin-bottom: 200px;
+    padding-bottom: 1px;
+}
+
+
+#partie2 .logo:hover{
+    opacity: 0.8;
+}
+
+/**
+Fin modif Augustin RR
+25/04/2020 12:34
+*/
