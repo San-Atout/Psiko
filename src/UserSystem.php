@@ -92,4 +92,9 @@ class UserSystem
             DateTime::createFromFormat("Y-m-d",$user->birthday),$user->ecoleId,
             $user->rang,$user->valider,$user->photoPicture);
     }
+
+    public function recherche(array $POST, string $string)
+    {
+        // si ta freq cardiaque "freq cardique"
+    }
 }
