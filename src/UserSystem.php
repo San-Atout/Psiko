@@ -7,6 +7,7 @@ namespace Psiko;
 use DateTime;
 use Psiko\database\userTable;
 use Psiko\Entity\userEntity;
+use Psiko\helper\Helper;
 use Psiko\helper\Notification;
 
 class UserSystem
@@ -64,7 +65,7 @@ class UserSystem
             $user = new userEntity(-1,$POST["prenom"],$POST["nom"],$POST["email"],$POST["adresse"],
                 $POST["numeroTelephone"],$POST["sexe"],$password,new DateTime(),
                 DateTime::createFromFormat("Y-m-d", $POST["birthday"]),1,
-                "utilisateur",false,"default");
+                "utilisateur",false,"default.png");
             $this->userDatabase->insertNewUser($user);
         }
         else
@@ -92,5 +93,41 @@ class UserSystem
             DateTime::createFromFormat("Y-m-d",$user->dateInscription),
             DateTime::createFromFormat("Y-m-d",$user->birthday),$user->ecoleId,
             $user->rang,$user->valider,$user->photoPicture);
+    }
+
+    public function changeProfilPicture(array $images, $id,string $langue)
+    {
+        $pseudo = str_ireplace(" ","-",$this->getUserById($id)->getNom())."-".str_ireplace(" ","-",$this->getUserById($id)->getPrenom());
+        $tailleMax= 256000;
+        $extensionAutoriser = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+        $extensionFichier = strtolower(substr(strrchr($images['name'], '.'),1));
+        if (!in_array($extensionFichier,$extensionAutoriser)){
+            $sortie["errors"] = "L'extension n'est pas une des extensions supportés";
+            return $sortie;
+        }
+        if ($images["size"] > $tailleMax){
+            $depassement = ($images["size"] - $tailleMax)/1000;
+            $sortie["danger"] = "Nous sommes désolé mais votre fichier dépasse la limite de ".$depassement. " Ko";
+            return $sortie;
+        }
+        $nomfichier = $pseudo.Helper::chaineAleatoire(20).".".$extensionFichier;
+        $cheminImage ="avatar/";
+        $chemin = $cheminImage.$nomfichier;
+        $resultat = move_uploaded_file($images['tmp_name'],$chemin);
+        if ($resultat) {
+            if ($this->getUserById($id)->getPhotoPicture() != "default.png")
+            {
+                $ancienneImage = $this->userDatabase->getOldProfilPicture($id);
+                $cheminAncienneImage = $cheminImage.$ancienneImage;
+                @unlink($cheminAncienneImage);
+            }
+            $this->userDatabase->changePhotoProfil($nomfichier,$id);
+            $sortie["success"] = "L'image a bien été uploadée";
+            return $sortie;
+        }
+        else{
+            $sortie["errors"] = "Nous sommes désolé mais une erreur c'est produite veuillez contacter le webmaster";
+            return $sortie;
+        }
     }
 }

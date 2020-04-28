@@ -60,4 +60,16 @@ class userTable
         $prepare = "SELECT * FROM psiko.user WHERE `id` = :id";
         return $this->database->prepare($prepare,array(":id"=>$id))[0];
     }
+
+    public function getOldProfilPicture($id)
+    {
+        $prepare = "SELECT `photoPicture` FROM `user` WHERE `id`=:id;";
+        return $this->database->prepare($prepare, array(":id" =>$id))[0]->photoPicture;
+    }
+
+    public function changePhotoProfil(string $nomfichier, $id)
+    {
+        $prepare = "UPDATE `user` SET `photoPicture`=:pf WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":pf" => $nomfichier, ":id" => $id));
+    }
 }

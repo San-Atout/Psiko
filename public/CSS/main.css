@@ -865,3 +865,19 @@ ajout code CSS pour les pages de melvin
 Fin modif Augustin RR
 25/04/2020 12:34
 */
+
+
+.modif-profil
+{
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+    align-content: center;
+}
+
+.changement-image-modif-profil
+{
+    width: fit-content;
+    width: -moz-fit-content;
+}

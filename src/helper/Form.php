@@ -95,14 +95,15 @@ class form
             </div>';
     }
 
-    public function inputFile(string $name, string $label)
+    public function inputFile(string $name, string $label, ?string $accept="")
     {
         $value = "";
+        $accept = ($accept == "") ? $accept : "accept='".$accept."'";
         $class = $this->getInputClass($name);
         return '
             <div class="form-group">
             <label for="'.$name.'" class="'.$class .'-label">'.$label.'</label> 
-            <input id="'.$name.'" class="'.$class .'" name="'.$name.'" value="'.$value.'" type="file" >
+            <input id="'.$name.'" class="'.$class .'" name="'.$name.'" value="'.$value.'" '.$accept.' type="file" >
             </div>';
     }
 
