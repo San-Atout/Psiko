@@ -75,7 +75,7 @@ class form
     }
 
 
-    public function input(string $name, ?string $label, ?string $inputType,?bool $hasBr =true , ?String $placeholder='', ?bool $required=true): string
+    public function input(string $name, ?string $label, ?string $inputType,?bool $hasBr =true , ?String $placeholder="", ?bool $required=true): string
     {
         $value = "";
         $type = 'text';
