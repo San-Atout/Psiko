@@ -38,6 +38,7 @@ class Routeur extends \AltoRouter
         $this->pageName = null;
         $this->langue = explode("/",substr($_SERVER['REQUEST_URI'],1))[0];
         $requestUrl = substr( $_SERVER['REQUEST_URI'], -1) == "/" ? $_SERVER['REQUEST_URI'] : $_SERVER['REQUEST_URI'].'/' ;
+        $requestUrl = strtolower($requestUrl);
         $match = $this->router->match($requestUrl);
         $view = $match['target'];
         $params = $match['params'];
@@ -45,7 +46,7 @@ class Routeur extends \AltoRouter
         {
             require $this->viewpath . DIRECTORY_SEPARATOR. $view . '.php' ;
         }else{
-            $langue404 = $this->wrongLanguage($_SERVER['REQUEST_URI']);
+            $langue404 = $this->wrongLanguage($requestUrl);
             if (isset($langue404))
             {
                 require $this->viewpath . DIRECTORY_SEPARATOR . $langue404.'/erreur/404.php';
