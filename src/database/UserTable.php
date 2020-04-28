@@ -60,4 +60,24 @@ class userTable
         $prepare = "SELECT * FROM psiko.user WHERE `id` = :id";
         return $this->database->prepare($prepare,array(":id"=>$id))[0];
     }
+
+    public function rechercheMultiple(bool $isMemoCouleur, bool $isReflexeVisuel, bool $isTemp, bool $isFreqCardiaque,bool $isTonalite, $dateDebut, $dateFin, $id)
+    {
+        $prepare = "SELECT ";
+        if ($isMemoCouleur) $prepare .= "`memorisation`,";
+        if ($isReflexeVisuel) $prepare .= "`reflexe`,";
+        if ($isTemp) $prepare .= "`temperature`,";
+        if ($isFreqCardiaque) $prepare .= "`freqCardiaque`,";
+        if ($isTonalite) $prepare .= "`tonalite`,";
+        $prepare = substr($prepare,0,strlen($prepare)-1);
+        if ($dateDebut == $dateFin)
+        {
+            $dateDebut .= " 00:00:00";
+            $dateFin .= " 23:59:59";
+        }
+        $prepare .= " FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
+        var_dump($prepare);
+        return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
+
+    }
 }

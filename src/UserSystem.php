@@ -12,7 +12,10 @@ use Psiko\helper\Notification;
 class UserSystem
 {
 
-    private userTable $userDatabse;
+    /**
+     * @var userTable
+     */
+    private userTable $userDatabase;
 
     public function __construct()
     {
@@ -93,8 +96,18 @@ class UserSystem
             $user->rang,$user->valider,$user->photoPicture);
     }
 
-    public function recherche(array $POST, string $string)
+    public function recherche(array $POST, string $langue,$id)
     {
-        // si ta freq cardiaque "freq cardique"
+
+        $isFreqCardiaque = isset($POST['freqCardiaque']) ;
+        $isTemp = isset($POST['tempPeau']);
+        $isReflexeVisuel = isset($POST['reflexeVisuel']) ;
+        $isRecoTonalite = isset($POST['recoTonalite']) ;
+        $isMemoCouleur = isset($POST['memoCouleur']) ;
+        $dateDebut=$POST['dateDebut'];
+        $dateFin=$POST['dateDebut'];
+        if ($dateDebut > $dateFin) return "error Date debut";
+        if (!($isFreqCardiaque || $isTemp || $isRecoTonalite || $isReflexeVisuel || $isMemoCouleur)) return "error rien de fait";
+        return $this->userDatabase->rechercheMultiple($isMemoCouleur, $isReflexeVisuel, $isTemp, $isFreqCardiaque,$isRecoTonalite, $dateDebut, $dateFin,$id);
     }
 }
