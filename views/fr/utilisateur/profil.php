@@ -20,7 +20,7 @@ if (!empty($_POST))
     if (!empty($_POST["sexe"])) $_SESSION["notification"] = $userSystem->changeSexe($_POST["sexe"],$user->getId(),"fr");
     if (!empty($_POST["adresse"])) $_SESSION["notification"] = $userSystem->changeAdresse($_POST["adresse"],$user->getId(),"fr");
     if (!empty($_POST["oldPassword"]))$_SESSION["notification"] = $userSystem->changeMdp($_POST,$user->getId(),"fr");
-    if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $userSystem->changeTelephone($_POST["numeroTelephone"],$user->getId(),"fr");
+    if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $userSystem->changeTelephone($_POST["numeroTelephone"], $user->getId(), "fr");
     $user = $userSystem->getUserById($_SESSION["auth"]->getId());
 
 }

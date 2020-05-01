@@ -130,7 +130,7 @@ class userTable
         return;
     }
 
-    public function changeBirthday(\DateTime $birthday, $id)
+    public function changeBirthday( $birthday, $id)
     {
         $prepare = "UPDATE `user`  SET `birthday`=:birthday WHERE `id`=:id";
         $this->database->prepare($prepare, array(":birthday" => $birthday,":id" => $id));

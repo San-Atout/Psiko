@@ -146,7 +146,6 @@ class Routeur extends \AltoRouter
     {
         $this->pageData = array();
         $this
-             ->get("/pl","pl/index", "Acceuil pl")
              ->get("/pl/","pl/index", "Acceuil pl")
              ->get("/pl/logowania","pl/utilisateur/login", "Connexion pl")
             /*Erreur HTTP*/
@@ -160,7 +159,6 @@ class Routeur extends \AltoRouter
     {
         $this->pageData = array();
         $this
-             ->get("/ar","ar/index", "Acceuil ar")
              ->get("/ar/","ar/index", "Acceuil ar")
              ->get("/ar/tasjiladokhol","ar/utilisateur/login", "Connexion ar")
             /*Erreur HTTP*/

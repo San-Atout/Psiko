@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kagami
- * Date: 24/12/2018
- * Time: 08:29
- */
 
 namespace Psiko\database;
 

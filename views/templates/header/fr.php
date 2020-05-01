@@ -24,7 +24,7 @@
                     if ($_SESSION["auth"]->getRang() === "utilisateur")
                     {
                        $menu = '
-                    <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> <!-- &ensp permet de créer un espace double-->
+                    <li class="menu_deroulant"><a href="#">Menu Utilisateur</a> 
                         <ul class="sous">
                             <li><a href="'.$routeur->getUrl("Profil fr") .'">Mon profil</a></li>
                             <li><a href="'.$routeur->getUrl("Resultats fr") .'">Mes résultats</a></li>

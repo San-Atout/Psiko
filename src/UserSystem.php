@@ -5,7 +5,6 @@ namespace Psiko;
 
 
 use DateTime;
-use MongoDB\Driver\Exception\Exception;
 use Psiko\database\userTable;
 use Psiko\Entity\userEntity;
 use Psiko\helper\Helper;
@@ -29,7 +28,7 @@ class UserSystem
         $user = $this->userDatabase->getUserByMail($email);
         if (!empty($user))
         {
-            if (password_verify($password,$user[0]->password))
+            if (password_verify($password,$user[0]->password) && $user[0]->valider == 1)
             {
                 $_SESSION["auth"] = new userEntity($user[0]->id,$user[0]->prenom,$user[0]->nom,$user[0]->email,$user[0]->adresse,$user[0]->telephone,
                     $user[0]->sexe,$user[0]->password,
@@ -72,9 +71,9 @@ class UserSystem
         }
         else
         {
-            if (!$isSamePassword) $result["error"]["SamePassword"] = Notification::errorNotifPasswordMissMatch($langue);
-            if (!$isNotInDatabase) $result["error"]["allreadyDatabase"] = Notification::errorNotifAllReadyIn($langue);
-            if (!$isMoreThan16) $result["error"]["toYoung"] = Notification::errorNotifTooYoung($langue);
+            if (!$isSamePassword) $result["error"] = Notification::errorNotifPasswordMissMatch($langue);
+            if (!$isNotInDatabase) $result["error"]= Notification::errorNotifAllReadyIn($langue);
+            if (!$isMoreThan16) $result["error"] = Notification::errorNotifTooYoung($langue);
         }
         return $result;
     }
@@ -167,9 +166,9 @@ class UserSystem
     public function changeMdp(array $POST, int $id, string $langue)
     {
         $user = $this->getUserById($id);
-            if (password_verify($_POST["oldPassword"],$user->getPassword()))
+            if (password_verify($POST["oldPassword"],$user->getPassword()))
             {
-                $result = $this->changeMdpAdmin($_POST["newPassword"],$_POST["newPasswordRpt"], $id,$langue);
+                $result = $this->changeMdpAdmin($POST["newPassword"],$POST["newPasswordRpt"], $id,$langue);
             }
             else $result["error"] = Notification::errorNotifWrongPassword($langue);
         return $result;
@@ -215,7 +214,7 @@ class UserSystem
         if (!empty($POST["password"]))$_SESSION["notification"] = $this->changeMdpAdmin($POST["password"],$POST["passwordRpt"],$userId,$Langue);
         if (!empty($POST["prenom"]))$_SESSION["notification"] = $this->changePrenom($POST["prenom"],$userId,$Langue);
         if (!empty($POST["nom"]))$_SESSION["notification"] = $this->changeNom($POST["nom"],$userId,$Langue);
-        if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $this->changeTelephone($_POST["numeroTelephone"],$userId,$Langue);
+        if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $this->changeTelephone($_POST["numeroTelephone"], $userId, $Langue);
         if (($_POST["birthday"] != date("Y-m-d")))$_SESSION["notification"] = $this->changeDateNaissance($_POST["birthday"],$userId,$Langue);
 
 
@@ -248,7 +247,7 @@ class UserSystem
         return $result;
     }
 
-    private function changeTelephone($numeroTelephone, $userId, $langue)
+    public function changeTelephone($numeroTelephone, $userId, $langue)
     {
         $this->userDatabase->changeTelephone($numeroTelephone, $userId);
         $result["success"] = Notification::sucessChangement($langue);
@@ -272,7 +271,7 @@ class UserSystem
         $isMemoCouleur = isset($POST['memoCouleur']) ;
         $dateDebut=$POST['dateDebut'];
         $dateFin=$POST['dateFin'];
-        if ($dateDebut > $dateFin) $_SESSION["notification"]["error"] = Notification::DateDebutSupDatefin($langue);
+        if ($dateDebut > $dateFin)return $_SESSION["notification"]["error"] = Notification::DateDebutSupDatefin($langue);
         if (!($isFreqCardiaque || $isTemp || $isRecoTonalite || $isReflexeVisuel || $isMemoCouleur)) return "error rien de fait";
         $results = $this->userDatabase->rechercheMultiple($isMemoCouleur, $isReflexeVisuel, $isTemp, $isFreqCardiaque,$isRecoTonalite, $dateDebut, $dateFin,$id);
         return $this->formatTestResult($results);
@@ -308,7 +307,7 @@ class UserSystem
     {
         $dateDebut=$POST['dateDebut'];
         $dateFin=$POST['dateFin'];
-        if ($dateDebut > $dateFin) return "error Date debut";
+        if ($dateDebut > $dateFin) return $_SESSION["notification"]["error"] = Notification::DateDebutSupDatefin($langue);
         $result = $this->userDatabase->rechecheSimple($dateDebut,$dateFin,$userId);
         return $this->formatTestResult($result);
     }
