@@ -5,6 +5,7 @@ namespace Psiko;
 
 
 use DateTime;
+use MongoDB\Driver\Exception\Exception;
 use Psiko\database\userTable;
 use Psiko\Entity\userEntity;
 use Psiko\helper\Helper;
@@ -13,7 +14,7 @@ use Psiko\helper\Notification;
 class UserSystem
 {
 
-    private userTable $userDatabse;
+    private userTable $userDatabase;
 
     public function __construct()
     {
@@ -57,12 +58,13 @@ class UserSystem
         $isNotInDatabase = $this->userDatabase->isUserInDatabase($POST["prenom"], $_POST["nom"], $POST["email"]);
         $isMoreThan16 =  DateTime::createFromFormat("Y-m-d", $POST["birthday"])->diff(new DateTime())->y >= 16 ;
         $isSamePassword = $POST["password"] === $POST["passwordRpt"];
-        var_dump($isNotInDatabase );
-        if ($isSamePassword && $isNotInDatabase && $isMoreThan16)
+        $isCodePostal = is_int($POST["codePostal"]);
+        if ($isSamePassword && $isNotInDatabase && $isMoreThan16 && $isCodePostal)
         {
             //TODO faire le système des écoles
+            $adresse = $POST["adresse"] ." ". $POST["codePostal"];
             $password = password_hash($POST["password"],PASSWORD_BCRYPT); ;
-            $user = new userEntity(-1,$POST["prenom"],$POST["nom"],$POST["email"],$POST["adresse"],
+            $user = new userEntity(-1,$POST["prenom"],$POST["nom"],$POST["email"],$adresse,
                 $POST["numeroTelephone"],$POST["sexe"],$password,new DateTime(),
                 DateTime::createFromFormat("Y-m-d", $POST["birthday"]),1,
                 "utilisateur",false,"default.png");
@@ -129,5 +131,149 @@ class UserSystem
             $sortie["errors"] = "Nous sommes désolé mais une erreur c'est produite veuillez contacter le webmaster";
             return $sortie;
         }
+    }
+
+    public function changeEmail($email, int $getId,$langue)
+    {
+        if (empty($this->userDatabase->getUserByMail($email)))
+        {
+            $this->userDatabase->changeEmail($email,$getId);
+            $result["success"] =  Notification::successChangeEmail($langue);
+        }else{
+            $result["error"]  = Notification::errorEmailAllReadyExist($langue);
+        }
+        return $result;
+    }
+
+    public function changeSexe($sexe, int $id, string $langue )
+    {
+        if ($this->getUserById($id)->getSexe() != $sexe)
+        {
+            $this->userDatabase->changeSexe($sexe,$id);
+            $result["success"] =  Notification::sucessChangement($langue);
+        }else{
+            $result["warning"]  = Notification::warningSameSexe($langue);
+        }
+        return $result;
+    }
+
+    public function changeAdresse($adresse, int $getId, string $langue)
+    {
+       $this->userDatabase->changeAdress($adresse,$getId);
+       $result["success"] =  Notification::sucessChangement($langue);
+       return $result ;
+    }
+
+    public function changeMdp(array $POST, int $id, string $langue)
+    {
+        $user = $this->getUserById($id);
+            if (password_verify($_POST["oldPassword"],$user->getPassword()))
+            {
+                $result = $this->changeMdpAdmin($_POST["newPassword"],$_POST["newPasswordRpt"], $id,$langue);
+            }
+            else $result["error"] = Notification::errorNotifWrongPassword($langue);
+        return $result;
+    }
+
+    public function validateUser($id, $langue)
+    {
+        $this->userDatabase->validateuser($id, 1);
+        return Notification::isValide($langue);
+
+
+    }
+
+    //Modifié par Come
+    public function bannirUser($id, $langue)
+    {
+        $this->userDatabase->validateuser($id, -1);
+        return Notification::isBanned($langue);
+
+    }
+
+    public function getAllUser()
+    {
+        $users = $this->userDatabase->getAllUser();
+        $i =0;
+        foreach ($users as $user)
+        {
+            $return[$i] =new userEntity($user->id,$user->prenom,$user->nom,$user->email,$user->adresse,$user->telephone,
+                $user->sexe,$user->password,
+                DateTime::createFromFormat("Y-m-d",$user->dateInscription),
+                DateTime::createFromFormat("Y-m-d",$user->birthday),$user->ecoleId,
+                $user->rang,$user->valider,$user->photoPicture);
+            $i++;
+        }
+        return $return;
+    }
+
+    public function modificationAdmin($userId, array $POST, $Langue)
+    {
+        if (!empty($POST["email"])) $_SESSION["notification"] = $this->changeEmail($_POST["email"],$userId,$Langue);
+        if (!empty($POST["sexe"])) $_SESSION["notification"] = $this->changeSexe($_POST["sexe"],$userId,$Langue);
+        if (!empty($POST["adresse"])) $_SESSION["notification"] = $this->changeAdresse($_POST["adresse"],$userId,$Langue);
+        if (!empty($POST["password"]))$_SESSION["notification"] = $this->changeMdpAdmin($POST["password"],$POST["passwordRpt"],$userId,$Langue);
+        if (!empty($POST["prenom"]))$_SESSION["notification"] = $this->changePrenom($POST["prenom"],$userId,$Langue);
+        if (!empty($POST["nom"]))$_SESSION["notification"] = $this->changeNom($POST["nom"],$userId,$Langue);
+        if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $this->changeTelephone($_POST["numeroTelephone"],$userId,$Langue);
+        if (($_POST["birthday"] != date("Y-m-d")))$_SESSION["notification"] = $this->changeDateNaissance($_POST["birthday"],$userId,$Langue);
+
+
+
+    }
+
+    private function changeMdpAdmin($password, $passwordRpt, $userId, $langue)
+    {
+        if ( $password== $passwordRpt )
+        {
+            $password = password_hash($password,PASSWORD_BCRYPT);
+            $this->userDatabase->changeMdp($password, $userId);
+            $result["success"] = Notification::sucessChangementMdp($langue);
+
+        } else $result["error"] = Notification::errorNotifPasswordMissMatch($langue);
+        return $result;
+    }
+
+    private function changePrenom($prenom, $userId, $langue)
+    {
+        $this->userDatabase->changePrenom($prenom, $userId);
+        $result["success"] = Notification::sucessChangement($langue);
+        return $result;
+    }
+
+    private function changeNom($prenom, $userId, $langue)
+    {
+        $this->userDatabase->changeNom($prenom, $userId);
+        $result["success"] = Notification::sucessChangement($langue);
+        return $result;
+    }
+
+    private function changeTelephone($numeroTelephone, $userId, $langue)
+    {
+        $this->userDatabase->changeTelephone($numeroTelephone, $userId);
+        $result["success"] = Notification::sucessChangement($langue);
+        return $result;
+    }
+
+    private function changeDateNaissance($birthday, $id, $langue)
+    {
+        $this->userDatabase->changeBirthday($birthday,$id);
+        $result["success"] = Notification::sucessChangement($langue);
+        return $result;
+    }
+
+    public function recherche(array $POST, string $langue,$id)
+    {
+
+        $isFreqCardiaque = isset($POST['freqCardiaque']) ;
+        $isTemp = isset($POST['tempPeau']);
+        $isReflexeVisuel = isset($POST['reflexeVisuel']) ;
+        $isRecoTonalite = isset($POST['recoTonalite']) ;
+        $isMemoCouleur = isset($POST['memoCouleur']) ;
+        $dateDebut=$POST['dateDebut'];
+        $dateFin=$POST['dateDebut'];
+        if ($dateDebut > $dateFin) return "error Date debut";
+        if (!($isFreqCardiaque || $isTemp || $isRecoTonalite || $isReflexeVisuel || $isMemoCouleur)) return "error rien de fait";
+        return $this->userDatabase->rechercheMultiple($isMemoCouleur, $isReflexeVisuel, $isTemp, $isFreqCardiaque,$isRecoTonalite, $dateDebut, $dateFin,$id);
     }
 }

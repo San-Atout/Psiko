@@ -145,4 +145,75 @@ class Notification
         else                       $result = "";
         return $result ;
     }
+
+    public static function successChangeEmail($langue)
+    {
+        //TODO faire les trads pour successChangeEmail polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Votre adresse email a bien été changé";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function errorEmailAllReadyExist($langue)
+    {
+        //TODO faire les trads pour errorEmailAllReadyExist polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Cette email est déjà utilisé merci d'en choisir un autre";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function warningSameSexe(string $langue)
+    {
+        //TODO faire les trads pour le success de la connexion polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Aucun changement dans le sexe detecté";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function sucessChangement(string $langue)
+    {
+        //TODO faire les trads pour le changement générique polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Changement effectué";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function sucessChangementMdp(string $langue)
+    {
+        //TODO faire les trads pour le changement de mot de passe polonais / arabes / anglais
+        if ($langue === "fr")      $result = "Changement de mot de passe effectué";
+        else if ($langue === "ar") $result = "";
+        else if ($langue === "pl") $result = "";
+        else                       $result = "";
+        return $result ;
+    }
+
+    public static function isValide($langue)
+    {
+        //TODO traducction des validations user
+        if ($langue === "fr")       $result = "utilisateur validé";
+        else if ($langue === "ar")  $result = "";
+        else if ($langue === "pl")  $result = "";
+        else                        $result = "";
+        return $result;
+
+    }
+
+    public static function isBanned($langue)
+    {
+        //TODO traducction des ban user
+        if ($langue === "fr")       $result = "utilisateur banni";
+        else if ($langue === "ar")  $result = "";
+        else if ($langue === "pl")  $result = "";
+        else                        $result = "";
+        return $result;
+    }
 }

@@ -881,3 +881,37 @@ Fin modif Augustin RR
     width: fit-content;
     width: -moz-fit-content;
 }
+
+input{
+    width: 100%;
+}
+
+.mes-users
+{
+    border: #000;
+    border-collapse: collapse;
+
+}
+.mes-users  td, .mes-users th
+{
+    text-align: center;
+    width: auto;
+    padding: 5px 10px;
+    margin: 0;
+    border: solid #000000;
+}
+.mes-users  td{
+    color: #000000;
+    background-color: #F8B3BC;
+}
+
+.mes-users th
+{
+    color: #FFFFFF;
+    background-color: #805B7D;
+}
+
+.mes-users-td-2
+{
+    background-color:  rgb(208,185,255);
+}

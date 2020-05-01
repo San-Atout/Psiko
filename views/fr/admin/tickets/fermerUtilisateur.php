@@ -9,7 +9,7 @@ if ($_SESSION["auth"]->getRang() != "utilisateur")
     header("Location: /fr/401");
     exit();
 }
-if ($_SESSION["delete"]["slug"] === $params["idDelete"])
+if (strtolower($_SESSION["delete"]["slug"]) === $params["idDelete"])
 {
 
     $db = new \Psiko\TicketSystem();

@@ -101,9 +101,8 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/tickets/","fr/admin/tickets/administrationTicket","AdminTickets fr")
             ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
             ->get("/fr/admin/lancer-test/","fr/admin/tests/lancerTest","LancerUnTest fr")
-            ->get("/fr/admin/consulterResultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
+            ->get("/fr/admin/consulterresultat/","fr/admin/tests/consulterResultat","AdminResultat fr")
             /*Administration FAQ*/
-
             ->get("/fr/admin/faq/","fr/admin/faq/consulterToutesLesQuestions","AdminFAQ fr")
             ->get("/fr/admin/faq/ajouter/","fr/admin/faq/ajouterQuestion","FAQAjouter fr")
             ->get("/fr/admin/faq/[i:questionId]/","fr/admin/faq/consulterUneQuestion","FAQConsulter fr")
@@ -116,7 +115,13 @@ class Routeur extends \AltoRouter
             ->get("/fr/description/reflexe-auditif/","fr/general/description/testReflexeAuditif","reflexeAuditif fr")
             ->get("/fr/description/reflexe-visuel/","fr/general/description/testReflexeVisuel","reflexeVisuel fr")
             ->get("/fr/description/temperature/","fr/general/description/testTemperature","temperature fr")
-
+            /**Administration utilisateur**/
+            ->get("/fr/admin/utilisateur/","fr/admin/utilisateurs/consulterUtilisateur","AdminUser fr")
+            ->get("/fr/admin/utilisateur/[i:id]/valider/[deleteType:validerUser]/","fr/admin/utilisateurs/valider","ValidateUser fr")
+            ->get("/fr/admin/utilisateur/[i:id]/bannir/[deleteType:bannirUser]/","fr/admin/utilisateurs/bannir","BanUser fr")
+            ->get("/fr/admin/utilisateur/[i:id]/","fr/admin/utilisateurs/consulter","consulterProfil fr")
+            ->get("/fr/admin/utilisateur/[i:id]/modifier/","fr/admin/utilisateurs/modifier","ModifAdminProfil fr")
+            ->get("/fr/resultats/utilisateur/[i:id]/","fr/utilisateur/resultat","ConsulterResultat fr")
         ;
 
         return $this;

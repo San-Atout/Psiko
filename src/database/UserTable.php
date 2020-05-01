@@ -72,4 +72,99 @@ class userTable
         $prepare = "UPDATE `user` SET `photoPicture`=:pf WHERE `id`=:id";
         $this->database->prepare($prepare, array(":pf" => $nomfichier, ":id" => $id));
     }
+
+    public function changeEmail($email, int $id)
+    {
+        $prepare = "UPDATE `user` SET `email`=:email WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":email" => $email, ":id" => $id));
+    }
+
+    public function changeSexe($sexe, int $id)
+    {
+        $prepare = "UPDATE `user` SET `sexe`=:sexe WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":sexe" => $sexe, ":id" => $id));
+    }
+
+    public function changeAdress($adresse, int $id)
+    {
+        $prepare = "UPDATE `user` SET `adresse`=:adresse WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":adresse" => $adresse, ":id" => $id));
+    }
+
+    public function changeMdp(?string $password, int $id)
+    {
+        $prepare = "UPDATE `user` SET `password`=:password WHERE `id`=:id ";
+        $this->database->prepare($prepare, array(":password" => $password, ":id" => $id));
+    }
+
+    public function validateUser($id,$isValid)
+    {
+        $prepare = "UPDATE `user`  SET `valider`=:isValid WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":id" => $id,":isValid" => $isValid));
+        return;
+    }
+
+    public function getAllUser()
+    {
+        return $this->database->query("SELECT *  FROM `user`;");
+    }
+
+    public function changePrenom($prenom, $id)
+    {
+        $prepare = "UPDATE `user`  SET `prenom`=:prenom WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":prenom" => $prenom,":id" => $id));
+        return;
+    }
+
+    public function changeNom($nom, $id)
+    {
+        $prepare = "UPDATE `user`  SET `nom`=:nom WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":nom" => $nom,":id" => $id));
+        return;
+    }
+
+    public function changeTelephone($numeroTelephone, $id)
+    {
+        $prepare = "UPDATE `user`  SET `telephone`=:telephone WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":telephone" => $numeroTelephone,":id" => $id));
+        return;
+    }
+
+    public function changeBirthday(\DateTime $birthday, $id)
+    {
+        $prepare = "UPDATE `user`  SET `birthday`=:birthday WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":birthday" => $birthday,":id" => $id));
+        return;
+    }
+
+    public function rechercheMultiple(bool $isMemoCouleur, bool $isReflexeVisuel, bool $isTemp, bool $isFreqCardiaque,bool $isTonalite, $dateDebut, $dateFin, $id)
+    {
+        $prepare = "SELECT ";
+        if ($isMemoCouleur) $prepare .= "`memorisation`,";
+        if ($isReflexeVisuel) $prepare .= "`reflexe`,";
+        if ($isTemp) $prepare .= "`temperature`,";
+        if ($isFreqCardiaque) $prepare .= "`freqCardiaque`,";
+        if ($isTonalite) $prepare .= "`tonalite`,";
+        $prepare = substr($prepare,0,strlen($prepare)-1);
+        if ($dateDebut == $dateFin)
+        {
+            $dateDebut .= " 00:00:00";
+            $dateFin .= " 23:59:59";
+        }
+        $prepare .= " FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
+        return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
+
+    }
+
+    public function rechecheSimple($dateDebut, $dateFin, $id)
+    {
+        if ($dateDebut == $dateFin)
+        {
+            $dateDebut .= " 00:00:00";
+            $dateFin .= " 23:59:59";
+        }
+        $prepare = "SELECT * FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
+        return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
+    }
+
 }

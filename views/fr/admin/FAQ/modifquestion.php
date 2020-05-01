@@ -10,10 +10,7 @@ if ($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getRa
     exit();
 }
 $FAQSystem = new \Psiko\FaqSystem();
-if (!empty($_POST))
-{
-    $_POST["isAnonyme"] = isset($_POST["isAnonyme"]) ? -1 : $_SESSION["auth"]->getId();
-}
+
 if (!empty($_POST))
 {
     $_POST["isAnonyme"] = isset($_POST["isAnonyme"]) ? -1 : $_SESSION["auth"]->getId();

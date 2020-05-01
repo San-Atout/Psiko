@@ -19,7 +19,7 @@ class userEntity
     private \DateTime $birthday;
     private int $ecoleId;
     private String $rang;
-    private bool $valider;
+    private int $valider;
     private String $photoPicture;
 
     public function __construct($id,$prenom, $nom, $email, $adresse, $telephone, $sexe, $password, $dateInscription,$birthday,$ecoleId,$rang,$valider,$photoPicture)
@@ -236,15 +236,15 @@ class userEntity
     /**
      * @return bool
      */
-    public function isValider(): bool
+    public function isValider(): int
     {
         return $this->valider;
     }
 
     /**
-     * @param bool $valider
+     * @param int $valider
      */
-    public function setValider(bool $valider): void
+    public function setValider(int $valider): void
     {
         $this->valider = $valider;
     }

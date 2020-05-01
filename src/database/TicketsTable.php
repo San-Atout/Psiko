@@ -122,4 +122,6 @@ class TicketsTable
         $this->db->prepare($prepare,array(":newLevel" => $levelProblem, ":id" => $ticketId, ":dateModif" => date("Y-m-d H:i:s")));
     }
 
+
+
 }
