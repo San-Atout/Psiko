@@ -216,4 +216,14 @@ class Notification
         else                        $result = "";
         return $result;
     }
+
+    public static function DateDebutSupDatefin(string $langue)
+    {
+        //TODO traducction des DateDebutSupDatefin
+        if ($langue === "fr")       $result = "La date de recherche du début est supérieur a la date de fin";
+        else if ($langue === "ar")  $result = "";
+        else if ($langue === "pl")  $result = "";
+        else                        $result = "";
+        return $result;
+    }
 }

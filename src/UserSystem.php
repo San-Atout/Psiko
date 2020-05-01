@@ -262,7 +262,7 @@ class UserSystem
         return $result;
     }
 
-    public function recherche(array $POST, string $langue,$id)
+    public function rechercheAdmin(array $POST, string $langue,$id)
     {
 
         $isFreqCardiaque = isset($POST['freqCardiaque']) ;
@@ -271,9 +271,45 @@ class UserSystem
         $isRecoTonalite = isset($POST['recoTonalite']) ;
         $isMemoCouleur = isset($POST['memoCouleur']) ;
         $dateDebut=$POST['dateDebut'];
-        $dateFin=$POST['dateDebut'];
-        if ($dateDebut > $dateFin) return "error Date debut";
+        $dateFin=$POST['dateFin'];
+        if ($dateDebut > $dateFin) $_SESSION["notification"]["error"] = Notification::DateDebutSupDatefin($langue);
         if (!($isFreqCardiaque || $isTemp || $isRecoTonalite || $isReflexeVisuel || $isMemoCouleur)) return "error rien de fait";
-        return $this->userDatabase->rechercheMultiple($isMemoCouleur, $isReflexeVisuel, $isTemp, $isFreqCardiaque,$isRecoTonalite, $dateDebut, $dateFin,$id);
+        $results = $this->userDatabase->rechercheMultiple($isMemoCouleur, $isReflexeVisuel, $isTemp, $isFreqCardiaque,$isRecoTonalite, $dateDebut, $dateFin,$id);
+        return $this->formatTestResult($results);
+    }
+
+    private function formatTestResult($resultsNonFormat)
+    {
+        $resultsFormat["freqCardiaque"] ="";
+        $resultsFormat["tempPeau"]="";
+        $resultsFormat["reflexeVisuel"]="";
+        $resultsFormat["recoTonalite"]="";
+        $resultsFormat["memoCouleur"]="";
+        $resultsFormat["dateExamen"]="";
+        foreach ($resultsNonFormat as $test)
+        {
+            if (isset($test->freqCardiaque))$resultsFormat["freqCardiaque"] .='"'.$test->freqCardiaque.'",';
+            if (isset($test->temperature))$resultsFormat["tempPeau"].='"'.$test->temperature.'",';
+            if (isset($test->reflexe))$resultsFormat["reflexeVisuel"].='"'.$test->reflexe.'",';
+            if (isset($test->tonalite))$resultsFormat["recoTonalite"].='"'.$test->tonalite.'",';
+            if (isset($test->memorisation))$resultsFormat["memoCouleur"].='"'.$test->memorisation.'",';
+            $resultsFormat["dateExamen"].='"'.$test->dateExamen.'",';
+        }
+        $resultsFormat["freqCardiaque"] = trim($resultsFormat["freqCardiaque"],",");
+        $resultsFormat["tempPeau"] = trim($resultsFormat["tempPeau"],",");
+        $resultsFormat["reflexeVisuel"] = trim($resultsFormat["reflexeVisuel"],",");
+        $resultsFormat["recoTonalite"] = trim($resultsFormat["recoTonalite"],",");
+        $resultsFormat["memoCouleur"] = trim($resultsFormat["memoCouleur"],",");
+        $resultsFormat["dateExamen"] = trim($resultsFormat["dateExamen"],",");
+        return $resultsFormat;
+    }
+
+    public function rechercheUser(array $POST, string $langue, $userId)
+    {
+        $dateDebut=$POST['dateDebut'];
+        $dateFin=$POST['dateFin'];
+        if ($dateDebut > $dateFin) return "error Date debut";
+        $result = $this->userDatabase->rechecheSimple($dateDebut,$dateFin,$userId);
+        return $this->formatTestResult($result);
     }
 }

@@ -1,61 +1,63 @@
 <?php
-//Modifié par Come
-$userId = $params["id"];
-
 if (!isset($_SESSION["auth"]))
 {
     header("Location: /fr/connexion/");
     exit();
 }
+$userId = $params["id"];
 if (($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getRang() != "gestionnaire" ) || ($_SESSION["auth"]->getId() != $userId)) {
     header("Location: /fr/401");
     exit();
 }
-$data1 = '';
-$data2 = '';
-$data3 = '';
-$data4 = '';
-$data5 = '';
-$data6 = '';
-
-
-//query to get data from the table
-$sql = "SELECT freqCardiaque, temperature,memorisation,reflexe,tonalite,dateExamen FROM `resultat_examen` ";
-$result = mysqli_query($mysqli, $sql);
-
-//loop through the returned data
-while ($row = mysqli_fetch_array($result)) {
-
-    $data1 = $data1 . '"'. $row['freqCardiaque'].'",';
-    $data2 = $data2 . '"'. $row['temperature'] .'",';
-    $data3 = $data3 . '"'. $row['memorisation'] .'",';
-    $data4 = $data4 . '"'. $row['reflexe'] .'",';
-    $data5 = $data5 . '"'. $row['tonalite'] .'",';
-    $data6 = $data6 . '"'. $row['dateExamen'] .'",';
-
-}
-
-$data1 = trim($data1,",");
-$data2 = trim($data2,",");
-$data3 = trim($data3,",");
-$data4 = trim($data4,",");
-$data5 = trim($data5,",");
-$data6 = trim($data6,",");
 
 if ($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getRang() != "gestionnaire" )
 {
+    echo '<form class="form-recherche" method="POST" action="">
+    <div class="form-group">
+        <label for="dateDebut" class="form-control-label">Date de début</label> <br>
+        <input id="dateDebut" class="form-control" name="dateDebut" value="'.date("Y-m-d").'" min="2020-1-1" max="2100-1-1" type="date">
+    </div>
+    <div class="form-group">
+        <label for="dateFin" class="form-control-label">Date de fin</label> <br>
+        <input id="dateFin" class="form-control" name="dateFin" value="'.date("Y-m-d").'" min="2020-1-1" max="2100-1-1" type="date">
+    </div>
 
+    <button type="submit" class="btn-neutral btn-submit">Rechercher</button>
+</form>
+';
+    if (!empty($_POST)) {
+        $userSystem = new \Psiko\UserSystem();
+        $resultat = $userSystem->rechercheUser($_POST, "fr", $userId);
+
+    }
 }
 else
 {
+    echo '<form class="form-recherche" method="POST" action="">
+    <input type="checkbox" name="freqCardiaque" id="freqCardiaque" /> <label for="freqCardiaque">Fréquence cardiaque</label><br />
+    <input type="checkbox" name="tempPeau" id="tempPeau" /> <label for="tempPeau">Teampérature de la peau</label><br />
+    <input type="checkbox" name="reflexeVisuel" id="reflexeVisuel" /> <label for="reflexeVisuel">Réflexes visuels</label><br />
+    <input type="checkbox" name="recoTonalite" id="recoTonalite" /> <label for="recoTonalite">Reconnaissance de tonalité</label><br />
+    <input type="checkbox" name="memoCouleur" id="memoCouleur" /> <label for="memoCouleur">Mémorisation de couleurs</label><br />
 
+
+    <div class="form-group">
+        <label for="dateDebut" class="form-control-label">Date de début</label> <br>
+        <input id="dateDebut" class="form-control" name="dateDebut" value="'.date("Y-m-d").'" min="2020-1-1" max="2100-1-1" type="date">
+    </div>
+    <div class="form-group">
+        <label for="dateFin" class="form-control-label">Date de fin</label> <br>
+        <input id="dateFin" class="form-control" name="dateFin" value="'.date("Y-m-d").'" min="2020-1-1" max="2100-1-1" type="date">
+    </div>
+
+    <button type="submit" class="btn-neutral btn-submit">Rechercher</button>
+</form>
+';
     if (!empty($_POST)) {
         $userSystem = new \Psiko\UserSystem();
-        $r = $userSystem->recherche($_POST, "fr", 1);
-        var_dump($r);
+        $resultat = $userSystem->rechercheAdmin($_POST, "fr", $userId);
+
     }
-
-
 }
 ?>
 
@@ -71,12 +73,12 @@ else
             data: {
 
 
-                labels: [<?php echo $data6; ?>],
+                labels: [<?=$resultat["dateExamen"] ?>],
 
                 datasets:
                     [{
                         label: 'Fréquence Cardiaque ',
-                        data: [<?php echo $data1; ?>],
+                        data: [<?=$resultat["freqCardiaque"] ?>],
                         backgroundColor: 'transparent',
                         borderColor:'rgba(255,99,132)',
                         borderWidth: 3
@@ -84,28 +86,28 @@ else
 
                         {
                             label: 'Température de la peau',
-                            data: [<?php echo $data2; ?>],
+                            data: [<?=$resultat["tempPeau"] ?>],
                             backgroundColor: 'transparent',
                             borderColor:'rgba(255,204,153)',
                             borderWidth: 3
                         },
                         {
                             label: 'Mémorisation d\'une teinte colorée ',
-                            data: [<?php echo $data3; ?>],
+                            data: [<?=$resultat["memoCouleur"]?>],
                             backgroundColor: 'transparent',
                             borderColor:'rgba(0,255,255)',
                             borderWidth: 3
                         },
                         {
                             label: 'Réflexes visuels',
-                            data: [<?php echo $data4; ?>],
+                            data: [<?=$resultat["reflexeVisuel"] ?>],
                             backgroundColor: 'transparent',
                             borderColor:'rgba(153, 255, 102)',
                             borderWidth: 3
                         },
                         {
                             label: 'Tonalité',
-                            data: [<?php echo $data5; ?>],
+                            data: [<?=$resultat["recoTonalite"] ?>],
                             backgroundColor: 'transparent',
                             borderColor:'rgba(128, 128, 0)',
                             borderWidth: 3

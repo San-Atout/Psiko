@@ -145,13 +145,12 @@ class userTable
         if ($isTemp) $prepare .= "`temperature`,";
         if ($isFreqCardiaque) $prepare .= "`freqCardiaque`,";
         if ($isTonalite) $prepare .= "`tonalite`,";
-        $prepare = substr($prepare,0,strlen($prepare)-1);
         if ($dateDebut == $dateFin)
         {
             $dateDebut .= " 00:00:00";
             $dateFin .= " 23:59:59";
         }
-        $prepare .= " FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
+        $prepare .= " `dateExamen` FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
         return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
 
     }
@@ -163,7 +162,7 @@ class userTable
             $dateDebut .= " 00:00:00";
             $dateFin .= " 23:59:59";
         }
-        $prepare = "SELECT * FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
+        $prepare = "SELECT `freqCardiaque`,`temperature`,`memorisation`,`reflexe`,`tonalite`,`dateExamen` FROM `resultat_examen` WHERE `userId`=:id AND (`dateExamen` BETWEEN :dateDebut AND :dateFin);";
         return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
     }
 
