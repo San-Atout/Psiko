@@ -457,15 +457,12 @@ select{
 
 .btn-submit
 {
-    margin-left: auto;
     color: #2E1760;
-    margin-right: auto;
-    margin-top: 40px;
     border-radius: 30px;
     font-size: 25px;
     width: 335px;
     height: 80px;
-    margin-bottom: 5%;
+    margin: 40px auto 5%;
     text-transform: uppercase;
     background-color: rgb(208,232,255);
     display: block;
