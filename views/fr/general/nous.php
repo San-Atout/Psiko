@@ -58,7 +58,7 @@
 </section>
 <section id="Memorisation_couleurs">
     <article id="introduction">
-        <h3>Mémorisation couleurs :</h3>
+        <h3>Mémorisation de couleurs :</h3>
         <p>Tester la capacité d’un conducteur à retenir les différents évènements se produisant autour de lui et
             mémériser plusieurs tâches au cours de conduire. Pour faire ce test l’utilisateur va essayer de
             concentrer sur une suite colorée de leds qui s’allument de façon aléatoire puis appuyer sur les

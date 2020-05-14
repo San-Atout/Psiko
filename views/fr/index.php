@@ -25,7 +25,7 @@
         </article>
 
     </section>
-    <p id="plus"><a href="nous.html" title="Qui sommes nous ?">En savoir plus</a></p>
+    <p id="plus"><a href="/fr/nous/" title="Qui sommes nous ?">En savoir plus</a></p>
 
     <p class="image"><img  id = "logoInfiniteMeasure"class="logo" src="/Images/logo%20Infinite_measures.png"  title="logo Infinite Measures"/></p>
 

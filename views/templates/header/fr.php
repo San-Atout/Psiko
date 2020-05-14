@@ -9,16 +9,17 @@
             <li><a href="<?=$routeur->getUrl("Acceuil fr") ?>">Accueil</a></li>
             <li class="menu_deroulant"><a href="<?=$routeur->getUrl("Nous fr") ?>">Information</a>
                 <ul class="sous">
-                    <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Qui sommes nous</a></li>
                     <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Le projet</a></li>
                     <li><a href="<?=$routeur->getUrl("Nous fr") ?>">Déroulé des tests</a></li>
                     <li><a href="<?=$routeur->getUrl("frequenceCardiaque fr") ?>">Fréquence cardiaques</a></li>
                     <li><a href="<?=$routeur->getUrl("temperature fr") ?>">Température de la peau</a></li>
-
+                    <li><a href="<?=$routeur->getUrl("reflexeVisuel fr") ?>">Réflexe visuel</a></li>
+                    <li><a href="<?=$routeur->getUrl("reflexeAuditif fr") ?>">Reconnaissance de tonalité</a></li>
+                    <li><a href="<?=$routeur->getUrl("memoire fr") ?>">Mémorisation de couleurs</a></li>
                 </ul>
             </li>
             <li><a href="<?=$routeur->getUrl("FAQ fr") ?>">FAQ</a></li>
-            <li><a href="<?=$routeur->getUrl("NousContacter fr") ?>">Nous contacter</a></li>
+            <li><a href="mailto:contact@infinitemeasures.fr">Nous contacter</a></li>
             <?php if(isset($_SESSION["auth"]))
                 {
                     if ($_SESSION["auth"]->getRang() === "utilisateur")
