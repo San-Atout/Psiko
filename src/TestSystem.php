@@ -58,18 +58,18 @@ class TestSystem
         }
         else if ($langue === "ar")
         {
-            $linkbase = "/fr/resultats/utilisateur/";
-            $valueInput =  "";
+            $linkbase = "/ar/nataij/mostakhdim";
+            $valueInput =  "معرفة المزيد";
         }
         else if ($langue === "pl")
         {
             $linkbase = "/fr/resultats/utilisateur/";
-            $valueInput =  "";
+            $valueInput =  "Zobacz więcej szczegółów";
         }
         else
         {
-            $linkbase = "/fr/resultats/utilisateur/";
-            $valueInput =  "";
+            $linkbase = "/en/resultats/utilisateur/";
+            $valueInput =  "See more details";
         }
 
         for ($i =0; $i < sizeof($infoByUserId); $i++)

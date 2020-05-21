@@ -108,21 +108,30 @@ class TicketSystem
         if ($langue === "fr")
         {
            $reponse .= " ##################################################################
-                        Réponse ajouter par ".$user->getNom()." ".$user->getPrenom()."
+                        Réponse ajouter par ".htmlspecialchars($user->getNom())." ".htmlspecialchars($user->getPrenom())."
                         Le : ".date("Y-m-d H:i:s")."
                         ##################################################################\n";
         }
         else if ($langue === "ar")
         {
-            $reponse .= "";
+            $reponse .=  " ##################################################################
+            أضاف هذا الجواب".htmlspecialchars($user->getNom())." ".htmlspecialchars($user->getPrenom())."
+             ".date("Y-m-d H:i:s")."في: "."
+            ##################################################################\n";
         }
         else if ($langue === "pl")
         {
-            $reponse .= "";
+            $reponse .= " ##################################################################
+                        Odpowiedz dodaj ".htmlspecialchars($user->getNom())." ".htmlspecialchars($user->getPrenom())."
+                        On: ".date("Y-m-d H:i:s")."
+                        ##################################################################\n";
         }
         else
         {
-            $reponse .= "";
+            $reponse .= " ##################################################################
+                        Answer added by ".$user->getNom()." ".$user->getPrenom()."
+                        The : ".date("Y-m-d H:i:s")."
+                        ##################################################################\n";
         }
         $reponse .= $texte."\n";
         $this->db->addReponse($reponse,$ticketsId);
@@ -132,7 +141,7 @@ class TicketSystem
     {
         $this->db->rourvrirTicket($ticketId,$adminId);
         if ($langue === "fr")       $reponse = "Ticket rouvert";
-        else if ($langue === "ar")  $reponse = "";
+        else if ($langue === "ar")  $reponse = "طلب أعيد فتحه ";
         else if ($langue === "pl")  $reponse = "";
         else                        $reponse = "";
         $this->ajouterReponse($reponse,$ticketId,$adminId,$langue);
@@ -142,7 +151,7 @@ class TicketSystem
     {
         $this->db->closeTicketUser($idTickets);
         if ($langue === "fr")       $reponse = "Fermeture du ticket par l'utilisateur";
-        else if ($langue === "ar")  $reponse = "";
+        else if ($langue === "ar")  $reponse = "أغلق المستخدم الطلب مجددا";
         else if ($langue === "pl")  $reponse = "";
         else                        $reponse = "";
         $this->ajouterReponse($reponse,$idTickets,$userId,$langue);
@@ -152,7 +161,7 @@ class TicketSystem
     {
         $this->db->closeTicketAdmin($ticketId,$adminId);
         if ($langue === "fr")       $reponse = "Fermerture du ticket par un administrateur";
-        else if ($langue === "ar")  $reponse = "";
+        else if ($langue === "ar")  $reponse = "أغلق المدير الطلب مجددا";
         else if ($langue === "pl")  $reponse = "";
         else                        $reponse = "";
         $this->ajouterReponse($reponse,$ticketId,$adminId,$langue);
