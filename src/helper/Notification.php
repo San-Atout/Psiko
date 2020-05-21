@@ -48,6 +48,7 @@ class Notification
         else if ($langue === "ar") $result = "لا يتطابق البريد الإلكتروني مع كلمة المرور";
         else if ($langue === "pl") $result = "Adres e-mail i hasło nie są zgodne";
         else                       $result = "Email and password do not correspond";
+
         return $result ;
     }
 
@@ -55,6 +56,7 @@ class Notification
     {
         if ($langue === "fr")      $result = "L'extension n'est pas autorisé";
         else if ($langue === "ar") $result = "لا يتطابق البريد الإلكتروني مع كلمة المرور";
+
         else if ($langue === "pl") $result = "";
         else                       $result = "Extension not supported";
         return $result ;
@@ -84,6 +86,7 @@ class Notification
         else if ($langue === "ar") $result = "تم إضافة السؤال إلى مجوعة الأسئلة الشائعة بنجاح";
         else if ($langue === "pl") $result = "Pytanie zostało dodane do FAQ!";
         else                       $result = "Question added to the Q/A with success";
+
         return $result ;
     }
 
