@@ -18,6 +18,9 @@ require ("../src/Entity/FaqEntity.php");
 require ("../src/Entity/TestEntity.php");
 require ("../src/TestSystem.php");
 require ("../src/database/testTable.php");
+require ("../src/database/EcoleDatabase.php");
+require ("../src/Entity/EcoleEntity.php");
+require ("../src/EcolesSystemes.php");
 
 ob_start();
 $routeur = new \Psiko\routeur\Routeur(dirname(__DIR__) . '/views', dirname(__DIR__) ."/public");

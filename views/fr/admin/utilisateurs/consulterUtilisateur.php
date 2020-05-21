@@ -17,7 +17,7 @@ $user = new \Psiko\UserSystem();
 $userAdmin = $user->getAllUser();
 ?>
 
-    <table class="mes-users center">
+    <table class="mes-tickets center">
         <thead>
         <th>Nom</th>
         <th>Prénom</th>

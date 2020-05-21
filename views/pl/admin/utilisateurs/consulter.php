@@ -16,7 +16,7 @@ if (($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getR
 $userId = $params["id"];
 $db = new \Psiko\UserSystem();
 $user =  $db->getUserByID($userId);
-
+$ecoleSystem = new \Psiko\EcolesSystemes();
 $aleatoire = \Psiko\helper\Helper::chaineAleatoire(20);
 $_SESSION["modif"]["slug"] = $aleatoire;
 $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
@@ -37,6 +37,9 @@ $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
     <br>
     <h1>Ranga : <?= htmlspecialchars($user->getRang())?></h1>
     <br>
+    <h1>Ecole : <?= htmlspecialchars($ecoleSystem->getEcoleById($user->getEcoleId())->getNom())?></h1>
+    <br>
+
     <?php
     if ($_SESSION["auth"]->getRang() === "administrateur")
         echo "<a href='/pl/admin/utilisateur/".$userId."/modifier/'>

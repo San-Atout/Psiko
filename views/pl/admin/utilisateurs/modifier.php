@@ -15,6 +15,8 @@ $userSystem = new \Psiko\UserSystem();
 $userId = $params["id"];
 if (!empty($_POST))  $userSystem->modificationAdmin($userId,$_POST,$this->getLangue());
 $form = new \Psiko\helper\form();
+$ecole = new \Psiko\EcolesSystemes();
+$arrayEcole = $ecole->getArraysEcole();
 ?>
 <div class="center">
     <h1>Créer une question de FAQ</h1>
@@ -58,6 +60,11 @@ $form = new \Psiko\helper\form();
                 <label for="birthday" class="form-control-label">Data urodzenia </label> <br>
                 <input id="birthday" class="form-control" name="birthday" value="2020-04-30" min="1900-1-1" max="2100-1-1" type="date">
             </div>
-        <input type="submit" class="btn-neutral btn" value="Edytuj">
+            <?= $form->inputSelect("rang","Le rang de l'utilisateur",
+                array("administrateur" => "Administrateur", "gestionnaire" => "Gestionnaire", "utilisateur" => "Utilisateur"),
+                $userSystem->getUserById($userId)->getRang())?>
+            <?= $form->inputSelect("ecoleId","L'école :", $arrayEcole ,$userSystem->getUserById($userId)->getEcoleId())?>
+
+            <input type="submit" class="btn-neutral btn" value="Edytuj">
     </form>
 </div>

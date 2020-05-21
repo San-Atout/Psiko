@@ -50,7 +50,7 @@ $moyenne = $test->getMoyenResult();
         }
     });
 </script>
-<table class="table-admin-moyenne-test">
+<table class="mes-tickets">
     <thead>
         <th>utilisateur</th>
         <th>Frequence <br>Cardiaque</th>

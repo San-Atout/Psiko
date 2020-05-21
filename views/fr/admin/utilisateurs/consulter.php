@@ -7,7 +7,7 @@ if (!isset($_SESSION["auth"]))
     header("Location: /fr/connexion/");
     exit();
 }
-if (($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getRang() != "gestionnaire" ) || ($_SESSION["auth"]->getId() != $userId))
+if (!($_SESSION["auth"]->getRang() == "administrateur" || ($_SESSION["auth"]->getId() != $userId)  ||$_SESSION["auth"]->getRang() != "gestionnaire" ))
 {
     header("Location: /fr/401");
     exit();
@@ -16,7 +16,7 @@ if (($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getR
 $userId = $params["id"];
 $db = new \Psiko\UserSystem();
 $user =  $db->getUserByID($userId);
-
+$ecoleSystem = new \Psiko\EcolesSystemes();
 $aleatoire = \Psiko\helper\Helper::chaineAleatoire(20);
 $_SESSION["modif"]["slug"] = $aleatoire;
 $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
@@ -36,6 +36,8 @@ $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
      <h1>Sexe : <?= htmlspecialchars($user->getSexe())?></h1>
     <br>
     <h1>Rang : <?= htmlspecialchars($user->getRang())?></h1>
+    <br>
+    <h1>Ecole : <?= htmlspecialchars($ecoleSystem->getEcoleById($user->getEcoleId())->getNom())?></h1>
     <br>
     <?php
     if ($_SESSION["auth"]->getRang() === "administrateur")

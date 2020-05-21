@@ -59,6 +59,7 @@
                             <li><a href="'.$routeur->getUrl("AdminResultat fr") .'">Consulter les résultats</a></li>
                             <li><a href="'.$routeur->getUrl("AdminUser fr") .'">Administer les utilisateurs</a></li>
                             <li><a href="'.$routeur->getUrl("AdminTickets fr") .'">Administer les tickets</a></li>
+                            <li><a href="'.$routeur->getUrl("AdminEcole fr") .'">Administrer les écoles</a></li>
                             <li><a href="'.$routeur->getUrl("AdminFAQ fr") .'">Administer la FAQ</a></li>
                             <li><a href="'.$routeur->getUrl("LancerUnTest fr") .'"> Lancer un test</a></li>
                             <li><a href="'.$routeur->getUrl("Deconnexion fr") .'">Déconnexion</a></li>

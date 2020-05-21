@@ -216,4 +216,24 @@ class Notification
         else                        $result = "Searching date of the beginning is over end date ";
         return $result;
     }
+
+    public static function sucessAddNewSchool($langue)
+    {
+        //TODO traducction des sucessAddNewSchool
+        if ($langue === "fr")       $result = "L'école a bien été ajouté";
+        else if ($langue === "ar")  $result = "";
+        else if ($langue === "pl")  $result = "";
+        else                        $result = "";
+        return $result;
+    }
+
+    public static function errorBasique($langue)
+    {
+        //TODO traducction des errorAddNewSchool
+        if ($langue === "fr")       $result = "Une error est survenue ";
+        else if ($langue === "ar")  $result = "";
+        else if ($langue === "pl")  $result = "";
+        else                        $result = "";
+        return $result;
+    }
 }

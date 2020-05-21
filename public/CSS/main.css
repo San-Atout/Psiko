@@ -1,5 +1,4 @@
 *
-
 {
     margin-top:0px;
     padding: 0px;
@@ -237,47 +236,63 @@ nav > ul li:hover .sous
     margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
-    text-align:justify;
+    text-align:center;
     justify-content: center;
     display: flex;
     flex-direction: column;
     min-height: 550px;
+    line-height: 24px;
 }
 
 footer{
-    flex-direction: column;
+
     left: 0; right: 0; bottom: 0;
     height: 100px;
     z-index:900;
-    border-top:solid;
     border-width:2px;
     border-color:black;
     padding-top:15px;
+    text-align: center;
+    margin-top: 80px;
+
+}
+footer ul{
+    display: flex;
+    justify-content: center;
+
 }
 
 #introduction{
-    width:80%;
-    background-color:rgb(208,232,255);
+    width:83%;
+    background: rgba(255,255,255,0.55) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 9px rgba(0,0,0,0.15);
     /*border:3px solid rgb(208,232,255);*/
     border-radius:50px;
+    line-height: 24px;
 }
 #introduction p{
     padding-left:50px;
     padding-right:50px;
     padding-top: 20px;
     padding-bottom:20px;
+    margin-top: 20px;
     text-align: justify;
+    font-size: 22px;
+    color: #333;
+    line-height: 24px;
 }
 
 #plus{
     width: 80%;
     text-align:right;
-    padding-top: 3px;
+    padding-top: 10px;
+    padding-left: 50px;
+
 }
 
 #plus a{
     text-decoration: none;
-    color: RGBa(160,160,160,0.7);
+    color: #999;
 }
 
 #presentation{
@@ -298,20 +313,40 @@ html
 
 
 #footer{
-    display: flex;
+
     justify-content: center;
+
 }
 
 #footer li{
-    margin:5px;
+
+    margin: 0px 40px;
+
 }
 
 #footer a{
 
+
     text-decoration: underline;
     color: RGBa(0,0, 0,1);
+    margin: 10px 40px;
+    font-size: 10px;
 }
+#copyrightFooter{
+    border-bottom: #AAA solid 2px;
+    padding-bottom: 20px;
+    margin: 10px 70px;
 
+}
+#texteFooter{
+    padding-top: 20px;
+    margin: 0px 70px;
+
+}
+#texteFooter li{
+    margin: 0px 10px;
+
+}
 #createurs{
     flex-direction: column;
     padding-left:3%;
@@ -332,6 +367,7 @@ html
     margin-right: auto;
     display: block;
     justify-content: center;
+
 }
 
 label{
@@ -457,17 +493,22 @@ select{
 
 .btn-submit
 {
+    margin-left: 42px;
     color: #2E1760;
+    margin-right: auto;
+    margin-top: 40px;
     border-radius: 30px;
-    font-size: 25px;
-    width: 335px;
+    font-size: 28px;
+    width: 210px;
     height: 80px;
-    margin: 40px auto 5%;
+    margin-bottom: 5%;
     text-transform: uppercase;
-    background-color: rgb(208,232,255);
+    background: rgba(255,255,255,0.35) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 9px rgba(0,0,0,0.15);
     display: block;
     text-align: center;
     vertical-align:middle;
+
 
 }
 
@@ -475,7 +516,7 @@ select{
 .btn-negatif
 {
     background-color: #5c0000;
-    color: #FFFFFF;
+    color: #FFFFFF33;
 }
 
 .btn-neutral
@@ -486,8 +527,8 @@ select{
 
 .btn-good
 {
-    background-color: #0d4d00;
-    color: #FFFFFF;
+    background: rgba(94, 255, 51,0.55) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 9px rgba(0,0,0,0.15);
 }
 
 .btn
@@ -532,8 +573,9 @@ h1
 
 .mes-tickets
 {
-    border: #000;
-    border-collapse: collapse;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 10px;
 
 }
 
@@ -543,7 +585,7 @@ h1
     width: auto;
     padding: 5px 10px;
     margin: 0;
-    border: solid #000000;
+    border: none;
 }
 .tickets-tableau-niveau-problem-Inconnu
 {
@@ -579,12 +621,12 @@ h1
 
 .mes-tickets-td-2
 {
-   background-color:  rgb(208,185,255);
+    background-color:  rgb(208,185,255);
 }
 
 .ticket-individuel
 {
-   display: flex;
+    display: flex;
     flex-direction: column;
     padding: 1vw;
     max-width: 40vw;
@@ -627,7 +669,6 @@ h1
 .checkbox-label
 {
     position: relative;
-    left:35px;
     top: 25px;
     margin-top: 0;
     margin-bottom: auto;
@@ -648,20 +689,24 @@ div.spoiler > h4
     position: relative;
 }
 div.spoiler input.boutonSpoil {
-    background-color: rgba(255,255,255,0);
+    background: rgba(255,255,255,0.35) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 9px rgba(0,0,0,0.15);
     border: none;
     width: fit-content;
     width: -moz-fit-content;
     margin-left: auto;
     margin-right: auto;
+    padding: 3px 15px;
 }
 
 
 div.spoiler div.contenuSpoiler {
     display: none;
     width: 100%;
-    text-align: center;
-    text-align: -moz-center;
+    text-align: left;
+    margin-left: 28px ;
+    margin-top: 15px;
+
 }
 
 div.contenuSpoiler
@@ -674,7 +719,7 @@ div.contenuSpoiler
 .faq
 {
     max-width: 50%;
-    margin-left: auto;
+    margin-left: 20%;
     margin-right: auto;
 }
 
@@ -751,13 +796,14 @@ ajout code CSS pour les pages de melvin
     width: 300px;
     height: auto;
     display:block;
-    margin-left: 280px;
+    text-align: center;
+    margin-bottom: 50px;
 
 }
 
 #presentationTest{
-    background: #DAE7F8 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 13px #B6CBF4;
+    background: rgba(255,255,255,0.65) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 13px rgba(0,0,0,0.15);
     border-radius: 98px;
     margin-left: 160px;
     margin-right: 160px;
@@ -827,7 +873,7 @@ ajout code CSS pour les pages de melvin
 }
 
 #partie2 ul  {
-    margin-bottom: 120px;
+    margin-bottom: 0px;
     margin-top: 120px;
 }
 
@@ -862,53 +908,88 @@ ajout code CSS pour les pages de melvin
 Fin modif Augustin RR
 25/04/2020 12:34
 */
-
-
-.modif-profil
-{
-    max-width: 90%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 50px;
-    align-content: center;
+#partieMemorisationCouleur{
+    margin-bottom: 0px;
 }
 
-.changement-image-modif-profil
-{
-    width: fit-content;
-    width: -moz-fit-content;
-}
+#contenu section h1{
+    font-size: 35px;
+    margin: 40px 0px;
 
-input{
-    width: 100%;
-}
-
-.mes-users
-{
-    border: #000;
-    border-collapse: collapse;
 
 }
-.mes-users  td, .mes-users th
-{
+
+#contenu section p {
+    margin: 30px 10%;
+    text-align: justify;
+}
+
+#contenu section article {
+    line-height: 34px;
     text-align: center;
-    width: auto;
-    padding: 5px 10px;
-    margin: 0;
-    border: solid #000000;
-}
-.mes-users  td{
-    color: #000000;
-    background-color: #F8B3BC;
+    padding-top: 15px;
+
+
 }
 
-.mes-users th
-{
-    color: #FFFFFF;
-    background-color: #805B7D;
+#Frequence_cardiaque{
+    display: block;
+    margin-left: 135px;
+    margin-bottom: 20px;
 }
 
-.mes-users-td-2
-{
-    background-color:  rgb(208,185,255);
+#Temperature_peau{
+    display: block;
+    margin-left: 135px;
+    margin-bottom: 20px;
+}
+#Reflexes_visuels{
+    display: block;
+    margin-left: 135px;
+    margin-bottom: 20px;
+}
+#Reconnaissance_tonalite{
+    display: block;
+    margin-left: 135px;
+    margin-bottom: 20px;
+}
+#Memorisation_couleurs{
+    display: block;
+    margin-left: 135px;
+    margin-bottom: 20px;
+}
+#contenu section article p {
+    font-size: 18px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#contenu section {
+    display: inline-block;
+    width: 100%;
+    text-align: end;
+    margin-bottom: 40px;
+
+}
+
+.boutonSpoil{
+    font-size: 23px;
+    background: rgba(255,255,255,0.35) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 9px rgba(0,0,0,0.15);
+
+}
+.contenuSpoiler{
+    margin-top: 2px;
+    padding-right: 20%;
+    text-align: left;
+}
+.faq{
+    justify-content: left;
+    margin-bottom: 7px;
+
+}
+#question {
+    width: 300px;
 }

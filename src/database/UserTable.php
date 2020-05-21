@@ -166,4 +166,23 @@ class userTable
         return $this->database->prepare($prepare, array(":id" => $id, ":dateDebut" => $dateDebut,":dateFin" => $dateFin));
     }
 
+    public function changeRang($rang, $id)
+    {
+        $prepare = "UPDATE `user`  SET `rang`=:rang WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":rang" => $rang,":id" => $id));
+        return;
+    }
+
+    public function getAllAdmin()
+    {
+        return $this->database->query("SELECT `id`, `email` FROM `user` WHERE `rang`= 'administrateur';");
+    }
+
+    public function changeEcole($ecoleId, $id)
+    {
+        $prepare = "UPDATE `user`  SET `ecoleId`=:ecoleId WHERE `id`=:id";
+        $this->database->prepare($prepare, array(":ecoleId" => $ecoleId,":id" => $id));
+        return;
+    }
+
 }

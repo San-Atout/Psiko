@@ -16,7 +16,7 @@ if (($_SESSION["auth"]->getRang() != "administrateur" && $_SESSION["auth"]->getR
 $userId = $params["id"];
 $db = new \Psiko\UserSystem();
 $user =  $db->getUserByID($userId);
-
+$ecoleSystem = new \Psiko\EcolesSystemes();
 $aleatoire = \Psiko\helper\Helper::chaineAleatoire(20);
 $_SESSION["modif"]["slug"] = $aleatoire;
 $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
@@ -36,6 +36,8 @@ $_SESSION["modif"]["time"] = date("Y-m-d H:i:s");
      <h1><?= htmlspecialchars($user->getSexe())?>الجنس:</h1>
     <br>
     <h1><?= htmlspecialchars($user->getRang())?>الرتبة :</h1>
+    <br>
+    <h1><?= htmlspecialchars($ecoleSystem->getEcoleById($user->getEcoleId())->getNom())?>  مدرسة :</h1>
     <br>
     <?php
     if ($_SESSION["auth"]->getRang() === "administrateur")

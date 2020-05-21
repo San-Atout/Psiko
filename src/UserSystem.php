@@ -60,7 +60,6 @@ class UserSystem
         $isCodePostal = is_int($POST["codePostal"]);
         if ($isSamePassword && $isNotInDatabase && $isMoreThan16 && $isCodePostal)
         {
-            //TODO faire le système des écoles
             $adresse = $POST["adresse"] ." ". $POST["codePostal"];
             $password = password_hash($POST["password"],PASSWORD_BCRYPT); ;
             $user = new userEntity(-1,$POST["prenom"],$POST["nom"],$POST["email"],$adresse,
@@ -215,6 +214,8 @@ class UserSystem
         if (!empty($POST["prenom"]))$_SESSION["notification"] = $this->changePrenom($POST["prenom"],$userId,$Langue);
         if (!empty($POST["nom"]))$_SESSION["notification"] = $this->changeNom($POST["nom"],$userId,$Langue);
         if (!empty($_POST["numeroTelephone"]))$_SESSION["notification"] = $this->changeTelephone($_POST["numeroTelephone"], $userId, $Langue);
+        if ($_POST["rang"] != $this->getUserById($userId)->getRang())$_SESSION["notification"] = $this->changeRang($_POST["rang"], $userId, $Langue);
+        if ($_POST["ecoleId"] != $this->getUserById($userId)->getEcoleId())$_SESSION["notification"] = $this->changeEcoleId($_POST["ecoleId"], $userId, $Langue);
         if (($_POST["birthday"] != date("Y-m-d")))$_SESSION["notification"] = $this->changeDateNaissance($_POST["birthday"],$userId,$Langue);
 
 
@@ -310,5 +311,28 @@ class UserSystem
         if ($dateDebut > $dateFin) return $_SESSION["notification"]["error"] = Notification::DateDebutSupDatefin($langue);
         $result = $this->userDatabase->rechecheSimple($dateDebut,$dateFin,$userId);
         return $this->formatTestResult($result);
+    }
+
+    private function changeRang($rang, $userId, $Langue)
+    {
+        $this->userDatabase->changeRang($rang,$userId);
+        return Notification::sucessChangement($Langue);
+    }
+
+    public function getAllAdmin()
+    {
+        $result = $this->userDatabase->getAllAdmin();
+        $adminArray = array();
+        foreach ($result as $admin)
+        {
+            $adminArray[$admin->id] = $admin->email;
+        }
+        return $adminArray;
+    }
+
+    private function changeEcoleId($ecoleId, $userId, $Langue)
+    {
+        $this->userDatabase->changeEcole($ecoleId,$userId);
+        return Notification::sucessChangement($Langue);
     }
 }

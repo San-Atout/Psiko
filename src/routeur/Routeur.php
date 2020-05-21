@@ -65,13 +65,12 @@ class Routeur extends \AltoRouter
     public function getAllPageFrançais():self
     {
         $this->pageData = array();
-        $this->get('/', 'index','Acceuil base')
+        $this
+            ->get('/', 'index','Acceuil base')
             ->get("/fr/","fr/index", "Acceuil fr")
-
             ->get("/fr/tickets/","fr/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket fr")
             ->get("/fr/tickets/[i:ticketId]/","fr/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel fr")
             ->get("/fr/tickets/[i:ticketId]/repondre/","fr/utilisateur/ticketSystem/repondreTicket","TicketUserReponse fr")
-
             ->get("/fr/admin/tickets/[i:ticketId]/","fr/admin/tickets/consulterTickets","TicketAdminIndividuel fr")
             ->get("/fr/admin/tickets/[i:ticketId]/repondre/","fr/admin/tickets/ajouterReponse","TicketAdminReponse fr")
             ->get("/fr/admin/tickets/[i:ticketId]/rouvrir/","fr/admin/tickets/rouvrir","TicketAdminRouvrir fr")
@@ -108,7 +107,6 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/faq/[i:questionId]/","fr/admin/faq/consulterUneQuestion","FAQConsulter fr")
             ->get("/fr/admin/faq/[i:questionId]/modifier/","fr/admin/faq/modifQuestion","FAQModif fr")
             ->get("/fr/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","fr/admin/faq/supprimerQuestion", "FAQSupprimer fr")
-
             /*Description des tests*/
             ->get("/fr/description/frequence-cardiaque/","fr/general/description/testFrequenceCardiaque","frequenceCardiaque fr")
             ->get("/fr/description/memorisation/","fr/general/description/testMemoire","memoire fr")
@@ -122,6 +120,11 @@ class Routeur extends \AltoRouter
             ->get("/fr/admin/utilisateur/[i:id]/","fr/admin/utilisateurs/consulter","consulterProfil fr")
             ->get("/fr/admin/utilisateur/[i:id]/modifier/","fr/admin/utilisateurs/modifier","ModifAdminProfil fr")
             ->get("/fr/resultats/utilisateur/[i:id]/","fr/utilisateur/resultat","ConsulterResultat fr")
+            /*Administration des écoles*/
+            ->get("/fr/admin/ecoles/","fr/admin/ecoles/ecolesBasique","AdminEcole fr")
+            ->get("/fr/admin/ecoles/[i:id]/modifier/","fr/admin/ecoles/modifier","AdminEcoleModif fr")
+            ->get("/fr/admin/ecoles/[i:id]/supprimer/[deleteType:deleteEcole]/","fr/admin/ecoles/supprimer","AdminEcoleSuppr fr")
+            ->get("/fr/admin/ecoles/ajouter/","fr/admin/ecoles/ajouter", "AdminAjoutEcoles fr ")
         ;
 
         return $this;
@@ -132,11 +135,9 @@ class Routeur extends \AltoRouter
         $this->pageData = array();
         $this
             ->get("/en/","en/index", "Acceuil en")
-
             ->get("/en/tickets/","en/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket en")
             ->get("/en/tickets/[i:ticketId]/","en/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel en")
             ->get("/en/tickets/[i:ticketId]/repondre/","en/utilisateur/ticketSystem/repondreTicket","TicketUserReponse en")
-
             ->get("/en/admin/tickets/[i:ticketId]/","en/admin/tickets/consulterTickets","TicketAdminIndividuel en")
             ->get("/en/admin/tickets/[i:ticketId]/repondre/","en/admin/tickets/ajouterReponse","TicketAdminReponse en")
             ->get("/en/admin/tickets/[i:ticketId]/rouvrir/","en/admin/tickets/rouvrir","TicketAdminRouvrir en")
@@ -173,7 +174,6 @@ class Routeur extends \AltoRouter
             ->get("/en/admin/faq/[i:questionId]/","en/admin/faq/consulterUneQuestion","FAQConsulter en")
             ->get("/en/admin/faq/[i:questionId]/modifier/","en/admin/faq/modifQuestion","FAQModif en")
             ->get("/en/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","en/admin/faq/supprimerQuestion", "FAQSupprimer en")
-
             /*Description des tests*/
             ->get("/en/description/frequence-cardiaque/","en/general/description/testFrequenceCardiaque","frequenceCardiaque en")
             ->get("/en/description/memorisation/","en/general/description/testMemoire","memoire en")
@@ -198,8 +198,6 @@ class Routeur extends \AltoRouter
         $this->pageData = array();
         $this->get("/pl/","pl/index", "Acceuil pl")
             ->get("/pl/logowania","pl/utilisateur/login", "Connexion pl")
-
-
             ->get("/pl/tickets/","pl/utilisateur/ticketSystem/envoyertickets","EnvoyerTicket pl")
             ->get("/pl/tickets/[i:ticketId]/","pl/utilisateur/ticketSystem/ticketIndividuel","TicketIndividuel pl")
             ->get("/pl/tickets/[i:ticketId]/repondre/","pl/utilisateur/ticketSystem/repondreTicket","TicketUserReponse pl")
@@ -240,7 +238,6 @@ class Routeur extends \AltoRouter
             ->get("/pl/admin/faq/[i:questionId]/","pl/admin/faq/consulterUneQuestion","FAQConsulter pl")
             ->get("/pl/admin/faq/[i:questionId]/modifier/","pl/admin/faq/modifQuestion","FAQModif pl")
             ->get("/pl/admin/faq/[i:questionId]/supprimer/[deleteType:idDelete]/","pl/admin/faq/supprimerQuestion", "FAQSupprimer pl")
-
             /*Description des tests*/
             ->get("/pl/description/frequence-cardiaque/","pl/general/description/testFrequenceCardiaque","frequenceCardiaque pl")
             ->get("/pl/description/memorisation/","pl/general/description/testMemoire","memoire pl")
@@ -312,13 +309,14 @@ class Routeur extends \AltoRouter
             ->get("/ar/wasf/redfi3l-sam3i/","ar/general/description/testReflexeAuditif","reflexeAuditif ar")
             ->get("/ar/wasf/redfi3l-mar2i/","ar/general/description/testReflexeVisuel","reflexeVisuel ar")
             ->get("/ar/wasf/harara/","ar/general/description/testTemperature","temperature ar")
-            /**Administration utilisateur**/
+            /*Administration utilisateur*/
             ->get("/ar/modir/mostakhdim/","ar/admin/utilisateurs/consulterUtilisateur","AdminUser ar")
             ->get("/ar/modir/mostakhdim/[i:id]/tahaqoq/[deleteType:validerUser]/","ar/admin/utilisateurs/valider","ValidateUser ar")
             ->get("/ar/modir/mostakhdim/[i:id]/izala/[deleteType:bannirUser]/","ar/admin/utilisateurs/bannir","BanUser ar")
             ->get("/ar/modir/mostakhdim/[i:id]/","ar/admin/utilisateurs/consulter","consulterProfil ar")
             ->get("/ar/modir/mostakhdim/[i:id]/tabdil/","ar/admin/utilisateurs/modifier","ModifAdminProfil ar")
             ->get("/ar/Nataij/mostakhdim/[i:id]/","ar/utilisateur/resultat","ConsulterResultat ar")
+
         ;
 
         return $this;
