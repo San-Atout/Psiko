@@ -251,6 +251,11 @@ class Routeur extends \AltoRouter
             ->get("/pl/admin/utilisateur/[i:id]/","pl/admin/utilisateurs/consulter","consulterProfil pl")
             ->get("/pl/admin/utilisateur/[i:id]/modifier/","pl/admin/utilisateurs/modifier","ModifAdminProfil pl")
             ->get("/pl/resultats/utilisateur/[i:id]/","pl/utilisateur/resultat","ConsulterResultat pl")
+            /*Administration des écoles  en polonais*/
+            ->get("/pl/admin/ecoles/","pl/admin/ecoles/ecolesBasique","AdminEcole pl")
+            ->get("/pl/admin/ecoles/[i:id]/modifier/","pl/admin/ecoles/modifier","AdminEcoleModif pl")
+            ->get("/pl/admin/ecoles/[i:id]/supprimer/[deleteType:deleteEcole]/","pl/admin/ecoles/supprimer","AdminEcoleSuppr pl")
+            ->get("/pl/admin/ecoles/ajouter/","pl/admin/ecoles/ajouter", "AdminAjoutEcoles pl ")
         ;
 
         return $this;
@@ -316,7 +321,12 @@ class Routeur extends \AltoRouter
             ->get("/ar/modir/mostakhdim/[i:id]/","ar/admin/utilisateurs/consulter","consulterProfil ar")
             ->get("/ar/modir/mostakhdim/[i:id]/tabdil/","ar/admin/utilisateurs/modifier","ModifAdminProfil ar")
             ->get("/ar/Nataij/mostakhdim/[i:id]/","ar/utilisateur/resultat","ConsulterResultat ar")
-
+            /*Admin École*/
+            /*Administration des écoles*/
+            ->get("/ar/modir/madaris/","ar/admin/ecoles/ecolesBasique","AdminEcole ar")
+            ->get("/ar/modir/madaris/[i:id]/idafa/","ar/admin/ecoles/modifier","AdminEcoleModif ar")
+            ->get("/ar/modir/madaris/[i:id]/hadf/[deleteType:deleteEcole]/","ar/admin/ecoles/supprimer","AdminEcoleSuppr ar")
+            ->get("/ar/modir/madaris/idafa/","ar/admin/ecoles/ajouter", "AdminAjoutEcoles ar")
         ;
 
         return $this;
