@@ -187,6 +187,11 @@ class Routeur extends \AltoRouter
             ->get("/en/admin/utilisateur/[i:id]/","en/admin/utilisateurs/consulter","consulterProfil en")
             ->get("/en/admin/utilisateur/[i:id]/modifier/","en/admin/utilisateurs/modifier","ModifAdminProfil en")
             ->get("/en/resultats/utilisateur/[i:id]/","en/utilisateur/resultat","ConsulterResultat en")
+            /*Administration des écoles*/
+            ->get("/en/admin/ecoles/","en/admin/ecoles/ecolesBasique","AdminEcole en")
+            ->get("/en/admin/ecoles/[i:id]/modifier/","en/admin/ecoles/modifier","AdminEcoleModif en")
+            ->get("/en/admin/ecoles/[i:id]/supprimer/[deleteType:deleteEcole]/","en/admin/ecoles/supprimer","AdminEcoleSuppr en")
+            ->get("/en/admin/ecoles/ajouter/","en/admin/ecoles/ajouter", "AdminAjoutEcoles en ")
         ;
         return $this;
     }
