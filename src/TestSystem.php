@@ -5,6 +5,8 @@ namespace Psiko;
 
 
 use Psiko\database\testTable;
+use Psiko\helper\Helper;
+use Psiko\helper\Notification;
 
 class TestSystem
 {
@@ -90,5 +92,14 @@ class TestSystem
                              </tr>";
         }
         return $tableRecap;
+    }
+
+    public function lancerTest($email,$adminId)
+    {
+        $userSystem = new UserSystem();
+        $user = $userSystem->getUserByEmail($email);
+        if (!is_null($user)) $this->db->setNewTest($user[0]->id,$adminId,date("Y-m-d H:i:s"),rand(0,100),
+            rand(0,100),rand(0,100),rand(0,100),rand(0,100),Helper::chaineAleatoire(2)."-".Helper::chaineAleatoire(2));
+
     }
 }

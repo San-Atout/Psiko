@@ -80,6 +80,7 @@ class form
         $value = "";
         $type = 'text';
         $br = '<br>';
+        $placeholder = ($placeholder == "") ? "" :  "Exemple : ".$placeholder;
         $class = $this->getInputClass($name);
         if (isset($inputType)) $type = 'type = "' . $inputType . '"';
         $require = ($required) ? 'required' : '';

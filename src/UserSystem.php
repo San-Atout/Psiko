@@ -21,6 +21,11 @@ class UserSystem
 
     }
 
+    public function getUserByEmail($email)
+    {
+        return $this->userDatabase->getUserByMail($email);
+    }
+
     public function authentification($email, $password, $langue)
     {
         $result = array();
@@ -221,6 +226,8 @@ class UserSystem
 
 
     }
+
+
 
     private function changeMdpAdmin($password, $passwordRpt, $userId, $langue)
     {

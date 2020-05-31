@@ -42,5 +42,14 @@ class testTable
         return $this->db->query($sql);
     }
 
+    public function setNewTest($userId, $adminId, $date, $freq, $temp, $memo, $reflex, $tonalite, $boitierId)
+    {
+        $prepare = "INSERT INTO `resultat_examen`(`userId`, `gestionnaireId`, `dateExamen`, `freqCardiaque`, 
+            `temperature`, `memorisation`, `reflexe`, `tonalite`, `boitierId`) VALUES (:userId,:adminId,:dateExam,:freq,
+            :temp,:memo,:reflex,:tonalite,:boitierId)";
+        return $this->db->prepare($prepare, array(":userId"=>$userId, ":adminId"=> $adminId,":dateExam"=>$date,":freq" =>$freq,
+            ":temp"=>$temp,":memo"=>$memo,":reflex" => $reflex,":tonalite" => $tonalite,":boitierId" => $boitierId));
+    }
+
 
 }
